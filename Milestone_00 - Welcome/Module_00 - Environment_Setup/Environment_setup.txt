@@ -1,0 +1,7 @@
+Environment Setup
+
+Install VS Code and Plugin - live server, auto close, auto rename, auto complete
+Learn VS Code shortcut
+Install Node JS
+Install Git SCM
+Open a GitHub account
