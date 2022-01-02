@@ -1,0 +1,1 @@
+Change repo’s url - git remote set-url origin (new_repo_link)
