@@ -1,0 +1,5 @@
+Show the branch name -  git branch
+Create new branch - git branch (new_branch_name)
+Change branch - git checkout (branch_name)
+Push from new branch - git push --set-upstream origin (new_branch_name)
+For marge first switch to main branch then - git merge (sub_branch_name)
