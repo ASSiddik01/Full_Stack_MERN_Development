@@ -1,0 +1,4 @@
+three command to need after change code
+git add .
+git commit -m "your_message”
+get push
