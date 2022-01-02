@@ -1,0 +1,3 @@
+Set branch - git branch -M main
+Set repo link - git remote add origin (repo_link)
+Send file - get push -u origin main
