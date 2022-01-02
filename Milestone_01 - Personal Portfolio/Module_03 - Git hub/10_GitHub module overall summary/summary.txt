@@ -1,0 +1,15 @@
+first create a repo on github
+Inatialize in your project - git init
+add file - git add .
+Commit message - git commit -m "your_message"
+set branch - git branch -M main
+Add repo url - git remote add origin (repo_url)
+Send file - get push -u origin main
+Change repo url - git remote set-url origin (repo_url)
+Show branch - git branch
+Create new branch - git branch (new_branch_name)
+Change branch - git checkout (branch_name)
+Push from new branch - git push --set-upstream origin (new_branch_name)
+Git marge go to main branch then - git merge (sub_branch_name)
+get exexting code in your local computer - git pull
+Create and switch new branch - git checkout -b (new_branch_name)
