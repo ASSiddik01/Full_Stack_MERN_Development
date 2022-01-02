@@ -1,0 +1,2 @@
+Get existing code in your local computer- git pull
+Create and switch to new branch - git checkout -b (new_branch_name)
