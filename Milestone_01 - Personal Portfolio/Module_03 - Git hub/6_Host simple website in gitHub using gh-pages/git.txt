@@ -1,0 +1,1 @@
+For github deployment goto repo setting -> pages -> select branch -> save
