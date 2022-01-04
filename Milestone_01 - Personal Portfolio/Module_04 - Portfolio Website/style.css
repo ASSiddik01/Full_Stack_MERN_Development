@@ -49,3 +49,17 @@ section {
     background-repeat: no-repeat;
     background-position: right;
 }
+
+.exprience_area{
+    background-image: url(img/exp-bg.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.exprience_item {
+    width: 40%;
+    margin-left: 5%;
+    margin-right: 5%;
+    box-shadow: 10px 0px 60px #b9b7b7;
+    padding:1%
+}
