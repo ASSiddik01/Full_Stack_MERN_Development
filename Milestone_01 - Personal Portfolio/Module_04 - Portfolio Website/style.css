@@ -12,8 +12,12 @@ h1{
 }
 
 section {
-    display: flex;
+    
     margin-bottom: 150px;
+}
+
+.flex_container{
+    display: flex;
 }
 
 .half_width {
