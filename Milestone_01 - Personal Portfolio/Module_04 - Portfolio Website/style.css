@@ -7,6 +7,9 @@ body{
 h1{
     font-size: 50px;
 }
+h2{
+    font-size: 40px;
+}
 .own_color{
     color: #ffa500;
 }
@@ -59,7 +62,23 @@ section {
 .exprience_item {
     width: 40%;
     margin-left: 5%;
-    margin-right: 5%;
+    margin-right: 2%;
     box-shadow: 10px 0px 60px #b9b7b7;
-    padding:1%
+    padding:2%
+}
+
+#full_stack_dev{
+    border-left: 7px solid;
+    border-image: linear-gradient(#fb6655, #f78a69);
+    border-image-slice: 1;
+}
+
+#bady_stack_dev{
+    border-left: 7px solid;
+    border-image: linear-gradient(#0005ff, #00f8ff);
+    border-image-slice: 1;
+}
+footer{
+    text-align: center;
+    color: gray;
 }
