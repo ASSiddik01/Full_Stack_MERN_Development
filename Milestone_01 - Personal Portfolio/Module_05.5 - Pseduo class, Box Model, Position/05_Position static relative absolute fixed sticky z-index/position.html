@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Position</title>
+    <style>
+        
+        .water{
+            position: relative;
+            top: -60px;
+            z-index: 1;
+        }
+        .ring{
+            position: relative;
+            z-index: 2;
+        }
+        .man{
+            position: relative;
+            top: 60px;
+            z-index: 3;
+        }
+    </style>
+</head>
+<body>
+    <div class="swimming">
+        <div class="man"><img src="svg/boy.svg" alt=""></div>
+        <div class="ring"><img src="svg/ring.svg" alt=""></div>
+        <div class="water"><img src="svg/water.svg" alt=""></div>
+    </div>
+</body>
+</html>
