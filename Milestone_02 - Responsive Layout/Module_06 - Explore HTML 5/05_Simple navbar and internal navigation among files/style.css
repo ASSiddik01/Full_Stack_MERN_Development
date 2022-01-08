@@ -1,0 +1,17 @@
+ul {
+    list-style: none;
+    display: flex;
+}
+
+ul li a {
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 20px;
+    color: brown;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+ul li a:hover {
+    background: burlywood;
+}
