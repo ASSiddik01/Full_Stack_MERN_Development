@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <style>
+        nav{
+            display: flex;
+            justify-content: space-between;
+        }
+        .login_form{
+            display: flex;
+            flex-direction: column;
+        }
+        .login_container{
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div>
+                <a href="">Home</a>
+                <a href="">Product</a>
+                <a href="">Order</a>
+                <a href="">About Us</a>
+            </div>
+            <div>
+                <i class="fas fa-sign-in-alt"></i>
+                <i class="fas fa-sign-out-alt"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="login_container">
+            <form action="" class="login_form">
+                <input type="text" name="name" placeholder="Your Name" id="">
+                <input type="email" name="email" placeholder="Your Email" id="">
+                <input type="password" name="password" placeholder="Your Password" id="">
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>
