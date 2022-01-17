@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap');
 
 /* Common CSS */
-body {
+body{
     font-family: 'Poppins', sans-serif;
     background-color: #E5E5E5;
 }
@@ -44,7 +44,6 @@ main {
     width: 56px;
     height: 56px;
 }
-
 .player_name {
     font-size: 18px;
     margin-left: 16px;
@@ -53,6 +52,39 @@ main {
     line-height: 27px;
 }
 
-hr {
+hr{
     margin-top: 4px;
+}
+
+/* Top Blog CSS */
+
+
+artical.blog {
+    display: flex;
+}
+
+.thumbnail img {
+    width: 177px;
+    height: 117px;
+}
+
+
+.blog_info {
+    margin-left: 16px;
+}
+
+.blog_title {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 27px;
+}
+
+.blog_author {
+    font-size: 16px;
+    color: #9F9F9F;
+}
+
+.blog_author a {
+    text-decoration: none;
+    color: #562EFF;
 }
