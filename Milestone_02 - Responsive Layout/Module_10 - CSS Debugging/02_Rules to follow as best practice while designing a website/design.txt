@@ -1,0 +1,6 @@
+5 things about design
+    Simplicity
+    Alignment
+    White space/ gap
+    Color
+    Typography
