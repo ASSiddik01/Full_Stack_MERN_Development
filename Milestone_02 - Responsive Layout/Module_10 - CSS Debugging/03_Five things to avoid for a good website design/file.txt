@@ -1,0 +1,4 @@
+UI color pick - https://uicolorpicker.com/
+Use one color plate in website
+Use easily readable font and color
+Maintain consistency
