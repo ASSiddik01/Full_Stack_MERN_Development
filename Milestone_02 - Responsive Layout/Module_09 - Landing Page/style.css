@@ -97,3 +97,36 @@ artical.blog {
     text-decoration: none;
     color: #562EFF;
 }
+
+
+/* Lates Course */
+
+.course_thumbnail img {
+    width: 224px;
+    height: 104px;
+}
+
+/* .couse_title {
+    font-size: 20px;
+    font-weight: 500;
+} */
+
+.course_info {
+    display: flex;
+}
+
+.fa-star.filled {
+    color: #FFC014;
+}
+
+.fa-star.empty {
+    color: #AEAEAE;
+}
+
+.couse_author {
+    font-size: 14.5px;
+}
+
+i.fa-star {
+    font-size: 12px;
+}
