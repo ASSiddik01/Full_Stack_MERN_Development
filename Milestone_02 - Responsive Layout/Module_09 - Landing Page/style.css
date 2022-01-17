@@ -156,3 +156,31 @@ i.fa-star {
     font-size: 14px;
     font-weight: 600;
 }
+
+/* Media Query */
+
+/* Mobile Device */
+@media only screen and (max-width:688px ) {
+    .container {
+        width: 100%;
+    }
+    
+    .players, .blogs, .courses {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    
+    .player{
+        flex-direction: column;
+    }
+}
+
+/* Tablet Device */
+@media only screen and (min-width:689px) and (max-width:1024px) {
+    .container {
+        width: 100%;
+    }
+
+    .players, .courses {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
