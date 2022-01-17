@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Specificity</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        h3{
+            color: blue;
+        }
+        .heading{
+            color: #38a52a;
+        }
+        #two{
+            color: blueviolet;
+        }
+        p{
+            color: blueviolet;
+            background-color: yellow;
+
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS Specificity</h1>
+
+    <h3 class="heading">This is heading_1</h3>
+    <h3 style="color: coral;" id="two" class="heading">This is heading_2</h3>
+    <h3>This is heading_3</h3>
+    <h3>This is heading_4</h3>
+    <h3>This is heading_5</h3>
+    <p>This is pragraph</p>
+    <p>This is pragraph</p>
+    <p>This is pragraph</p>
+    <p>This is pragraph</p>
+    <p>This is pragraph</p>
+</body>
+</html>
