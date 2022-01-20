@@ -12,3 +12,30 @@ body{
 .bn{
     font-family: 'Bebas Neue', cursive;
 }
+
+.banner_title{
+    font-weight: 400;
+    font-size: 80px;
+}
+
+header{
+    background: #FFFBF0;
+}
+
+.theme_color{
+    color: #FABE4C
+    ;
+}
+
+.buy_btn{
+    background-image: linear-gradient(177deg, #c3dd5b, #87a21b);
+    color: #fff;
+}
+
+section{
+    margin-bottom: 80px;
+}
+
+.banner{
+    padding-bottom: 100px;
+}
