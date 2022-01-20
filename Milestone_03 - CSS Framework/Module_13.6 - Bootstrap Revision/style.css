@@ -39,3 +39,15 @@ section{
 .banner{
     padding-bottom: 100px;
 }
+
+.product img {
+    height: 335px;
+    width: 325px;
+    background-color: #F1F1F1;
+    border-radius: 10px;
+}
+
+.price {
+    font-weight: 900;
+    font-size: 36px;
+}
