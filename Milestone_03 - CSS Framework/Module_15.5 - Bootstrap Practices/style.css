@@ -1,0 +1,23 @@
+.theme_color{
+    color: #FA804C;
+}
+
+.theme_button{
+    background-color: #3948d5;
+}
+
+.header_info h1 {
+    font-size: 60px;
+}
+
+header{
+    background-color: #FFF9F4;
+}
+
+section{
+    margin-bottom: 100px;
+}
+
+.shoes img{
+    background-color: #F1F1F1;
+}
