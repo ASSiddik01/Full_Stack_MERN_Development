@@ -1,0 +1,1 @@
+// Recap array variable conditions
