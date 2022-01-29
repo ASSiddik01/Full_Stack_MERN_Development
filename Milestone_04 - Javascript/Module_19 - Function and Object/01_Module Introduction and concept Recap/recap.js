@@ -1,0 +1,7 @@
+// variable
+
+// array
+
+// conditions
+
+// loop
