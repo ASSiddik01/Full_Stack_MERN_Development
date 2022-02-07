@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <article class='blog'>
+        <h1 class="blog_title">Blog_1</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, nisi? Labore delectus mollitia a ea ipsum, nulla nostrum suscipit ducimus et tenetur provident eligendi id, recusandae autem! Labore, excepturi. Perferendis optio officia voluptatum eum eius veritatis hic iste officiis ipsum.</p>
+    </article>
+    <article class='blog'>
+        <h1 class="blog_title">Blog_2</h1>
+        <p>Aliquam aut pariatur laudantium aliquid, eius quae officiis libero eveniet aperiam excepturi! Provident recusandae veniam nemo, eaque vitae consectetur. Dicta vel provident iusto sunt maiores totam consequatur, quasi inventore natus vitae quod doloremque molestias eius pariatur, deleniti dolorum numquam tempora?</p>
+    </article>
+    <article class='blog'>
+        <h1 id="title_3" class="blog_title">Blog_3</h1>
+        <p>Eius illo quis, iste fuga rerum magni ipsam nam tempora inventore dolores at exercitationem error voluptates ex quas est harum a blanditiis deserunt expedita consequuntur veritatis! Dolor atque, exercitationem tenetur, accusamus eaque vero provident, expedita dolore odit debitis rerum voluptas!</p>
+    </article>
+    <article class='blog'>
+        <h1 class="blog_title">Blog_4</h1>
+        <p>Voluptates ducimus recusandae possimus porro alias voluptatibus distinctio atque sequi in saepe molestiae culpa iusto fugiat, explicabo corrupti veniam aut officia! Ab magni possimus porro quo rerum quaerat dolores molestiae dolorem odio eveniet eum, natus doloribus laborum fugiat, praesentium delectus.</p>
+    </article>
+    <script>
+        // console.log(document);
+        const blogTitles = document.getElementsByTagName('h1');
+        for(const title of blogTitles){
+            console.log(title.innerText);
+        }
+
+        const blogs = document.getElementsByClassName('blog');
+        // console.log(blogs);
+        for( const blog of blogs){
+            blog.style.border = '2px solid orange';
+            blog.style.borderRadius = '5px';
+            blog.style.margin = '10px';
+            blog.style.padding = '20px';
+        }
+
+        blogTitles.getAttri
+
+        
+    </script>
+</body>
+</html>
