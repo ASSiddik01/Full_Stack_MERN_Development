@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Event Delegate</h1>
+    <ul id="list_container">
+        <li class="item">Lorem, ipsum.</li>
+        <li class="item">Modi, ratione.</li>
+        <li class="item">Laboriosam, quos?</li>
+        <li class="item">Unde, molestiae!</li>
+        <li class="item">Facilis, impedit?</li>
+    </ul>
+    <button id="add_item">Add New li</button>
+
+
+    <script>
+        //1. Remove element
+        // const items = document.getElementsByClassName('item');
+        // for (const item of items){
+        //     item.addEventListener('click', function(event){
+        //         // document.getElementById('list_container').removeChild(item);
+        //         event.target.parentNode.removeChild(event.target);
+        //     })
+        // }
+
+        //2. Add element
+        document.getElementById('add_item').addEventListener('click', function () {
+            const li = document.createElement('li');
+            li.innerText = 'New Item';
+            li.classList.add('item');
+            const parent = document.getElementById('list_container');
+            parent.appendChild(li);
+        })
+
+        // Remove by delegate
+        document.getElementById('list_container').addEventListener('click', function (event) {
+            event.target.parentNode.removeChild(event.target);
+        })
+    </script>
+</body>
+
+</html>
