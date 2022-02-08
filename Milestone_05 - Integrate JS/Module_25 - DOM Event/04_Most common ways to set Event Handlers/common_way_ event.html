@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p id="paragraph"></p>
+    <input type="text" name="" id="name_input">
+    <button id="update">Update</button>
+    <button id="click_function">Click Function</button>
+    <button id="direct_function">Direct shortcut</button>
+
+
+    <script>
+        // Click Function
+        const clickFunction = document.getElementById('click_function')
+        clickFunction.addEventListener('click',justClick)
+        function justClick() {
+            const p = document.getElementById('paragraph');
+            p.innerText = 'Set text by click functions';
+        }
+
+        // direct shortcut
+        document.getElementById('direct_function').addEventListener('click', function(){
+            const p = document.getElementById('paragraph');
+            p.innerText = 'Set text by Direct functions';
+        });
+
+        // Get element and update
+        document.getElementById('update').addEventListener('click',function(){
+            const input = document.getElementById('name_input');
+            const p = document.getElementById('paragraph');
+            p.innerText = input.value;
+            // Input erase
+            input.value = '';
+        })
+    </script>
+</body>
+
+</html>
