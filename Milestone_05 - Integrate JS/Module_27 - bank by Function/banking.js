@@ -22,6 +22,20 @@ function updateTotalField(fieldId, Amount) {
     previousTotal.innerText = totalAmount;
 }
 
+function updateBalance(amount,isAdd) {
+     //6.Get previous balace
+     const previousBalanceTotal = document.getElementById('balance_total');
+     const previousBalanceAmount = parseFloat(previousBalanceTotal.innerText);
+ 
+     //7. Update Total Balance
+    if (isAdd == true) {
+        previousBalanceTotal.innerText = previousBalanceAmount + amount;
+    } else {
+        previousBalanceTotal.innerText = previousBalanceAmount - amount;
+    }
+     
+}
+
 
 
 // Deposite handler
@@ -32,15 +46,8 @@ document.getElementById('deposite_button').addEventListener('click', function ()
     //2 Update total
     updateTotalField('deposite_total', depositeAmount);
 
-    //6.Get previous balace
-    const previousBalanceTotal = document.getElementById('balance_total');
-    const previousBalanceAmount = parseFloat(previousBalanceTotal.innerText);
-
-    //7. Update Total Balance
-    previousBalanceTotal.innerText = previousBalanceAmount + depositeAmount;
-
-
-
+    // 3. Update Total Balance
+    updateBalance(depositeAmount, true);
 
 });
 
@@ -53,11 +60,7 @@ document.getElementById('withdrow_button').addEventListener('click', function ()
     // 2. Update total
     updateTotalField('withdrow_total', withdrowAmount);
 
-    //6.Get previous balace
-    const previousBalanceTotal = document.getElementById('balance_total');
-    const previousBalanceAmount = parseFloat(previousBalanceTotal.innerText);
-
-    //7. Update Total Balance
-    previousBalanceTotal.innerText = previousBalanceAmount - withdrowAmount;
+    // 3. Update Total Balance
+    updateBalance(withdrowAmount, false);
 
 })
