@@ -32,3 +32,42 @@ document.getElementById('deposite_button').addEventListener('click', function ()
     depositeField.value = '';
 
 });
+
+// Withdrow Handel
+document.getElementById('withdrow_button').addEventListener('click', function () {
+    
+    // 1. get Withdrow amount
+    const withdrowField = document.getElementById('withdraw_amount');
+    const withdrowInput = withdrowField.value;
+    // Empty error handle
+    if (withdrowInput == '') {
+        alert('Give a number');
+        return;
+    }
+    const withdrowAmount = parseFloat(withdrowInput);
+    
+    
+
+    // 2. get previous withdown amount
+    const previousWithdrowTotal = document.getElementById('withdrow_total');
+    const previousWithdrowText = previousWithdrowTotal.innerText;
+    const previousWithdrowAmount = parseFloat(previousWithdrowText)
+
+    // 3. Calculation total Withdrow
+    const totalWithdrowAmount = previousWithdrowAmount + withdrowAmount;
+
+    // 4. Set Total withdrow
+    previousWithdrowTotal.innerText = totalWithdrowAmount;
+
+    //6.Get previous balace
+    const previousBalanceTotal = document.getElementById('balance_total');
+    const previousBalanceAmount = parseFloat(previousBalanceTotal.innerText);
+
+    //7. Update Total Balance
+    previousBalanceTotal.innerText = previousBalanceAmount - withdrowAmount;
+
+    // 5. Clear withdrow input
+    withdrowField.value = '';
+    
+    
+})
