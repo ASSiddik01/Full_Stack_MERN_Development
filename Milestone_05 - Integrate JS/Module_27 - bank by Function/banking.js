@@ -1,17 +1,15 @@
-function getInputValue() {
-    const depositeField = document.getElementById('deposite_amount');
-    const depositeText = depositeField.value;
-    // Empty error handle
-    if (depositeText == '') {
-        alert('Give a number');
-        return;
-    }
-    const depositeAmount = parseFloat(depositeText);
+function getInputValue(inputId) {
+    const inputField = document.getElementById(inputId);
+    const inputText = inputField.value;
+
+    const inputAmount = parseFloat(inputText);
 
     //Clear Deposite field
-    depositeField.value = '';
+    inputField.value = '';
 
-    return depositeAmount;
+    return inputAmount;
+
+
 }
 
 
@@ -19,7 +17,7 @@ function getInputValue() {
 // Deposite handler
 document.getElementById('deposite_button').addEventListener('click', function () {
     //1 Get Deposite amount
-    const depositeAmount = getInputValue();
+    const depositeAmount = getInputValue('deposite_amount');
 
     //2 Get Previous depositie
     const previousDepositeTotal = document.getElementById('deposite_total');
@@ -40,7 +38,7 @@ document.getElementById('deposite_button').addEventListener('click', function ()
     previousBalanceTotal.innerText = previousBalanceAmount + depositeAmount;
 
 
-    
+
 
 });
 
@@ -48,14 +46,7 @@ document.getElementById('deposite_button').addEventListener('click', function ()
 document.getElementById('withdrow_button').addEventListener('click', function () {
 
     // 1. get Withdrow amount
-    const withdrowField = document.getElementById('withdraw_amount');
-    const withdrowInput = withdrowField.value;
-    // Empty error handle
-    if (withdrowInput == '') {
-        alert('Give a number');
-        return;
-    }
-    const withdrowAmount = parseFloat(withdrowInput);
+    const withdrowAmount = getInputValue('withdraw_amount');
 
 
 
@@ -76,9 +67,5 @@ document.getElementById('withdrow_button').addEventListener('click', function ()
 
     //7. Update Total Balance
     previousBalanceTotal.innerText = previousBalanceAmount - withdrowAmount;
-
-    // 5. Clear withdrow input
-    withdrowField.value = '';
-
 
 })
