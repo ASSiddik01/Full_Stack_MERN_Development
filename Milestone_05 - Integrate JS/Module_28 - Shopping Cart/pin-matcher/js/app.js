@@ -30,3 +30,21 @@ document.getElementById('key_pad').addEventListener('click', function (event) {
     }
     
 })
+
+// Pin varify
+function varifyPin() {
+    const generatedPin = document.getElementById('pin_show').value;
+    const givenPin = document.getElementById('pin_input').value;
+    // get messeage
+    const loginSuccess = document.getElementById('pin_matched');
+    const loginFaild = document.getElementById('pin_wrong');
+    if (generatedPin == givenPin) {
+        loginSuccess.style.display = 'block';
+        loginFaild.style.display = 'none';
+        console.log('sucess')
+    } else {
+        loginFaild.style.display = 'block';
+        loginSuccess.style.display = 'none';
+
+    }
+}
