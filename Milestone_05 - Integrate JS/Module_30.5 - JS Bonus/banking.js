@@ -20,6 +20,28 @@ function updateTotalField(fieldId, amount) {
     previousTotal.innerText = totalAmount;
 }
 
+function getCurrentBalance() {
+    //6.Get previous balace
+    const previousBalanceTotal = document.getElementById('balance_total');
+    const previousBalanceAmount = parseFloat(previousBalanceTotal.innerText);
+    return previousBalanceAmount;
+}
+
+function updateBalance(amount, isAdd) {
+    //6.Get previous balace
+    const previousBalanceTotal = document.getElementById('balance_total');
+
+    const previousBalanceAmount = getCurrentBalance();
+
+    //7. Update Total Balance
+    if (isAdd == true) {
+        previousBalanceTotal.innerText = previousBalanceAmount + amount;
+    } else {
+        previousBalanceTotal.innerText = previousBalanceAmount - amount;
+    }
+
+}
+
 
 // Deposite handler
 document.getElementById('deposite_button').addEventListener('click', function () {
@@ -35,6 +57,30 @@ document.getElementById('deposite_button').addEventListener('click', function ()
         updateBalance(depositeAmount, true);
     }
 
-
-
 });
+
+
+
+// Withdrow Handel
+document.getElementById('withdrow_button').addEventListener('click', function () {
+
+    // 1. get Withdrow amount
+    const withdrowAmount = getInputValue('withdraw_amount');
+
+    // Reject negetive balance
+    const currentBalance = getCurrentBalance();
+
+    // 4 Error Handle
+    if (withdrowAmount > 0 && withdrowAmount < currentBalance) {
+        // 2. Update total
+        updateTotalField('withdrow_total', withdrowAmount);
+
+        // 3. Update Total Balance
+        updateBalance(withdrowAmount, false);
+    }
+
+    if (withdrowAmount > currentBalance) {
+        alert('You can not withdrow then your savings amount');
+    }
+
+})
