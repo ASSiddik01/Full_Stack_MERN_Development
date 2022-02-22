@@ -18,21 +18,36 @@ function loadUsers() {
 
     fetch('https://jsonplaceholder.typicode.com/users')
         .then(response => response.json())
-        .then(users => console.log(users))
+        // .then(users => console.log(users))
+        .then(users => displayData(users))
 
 }
 
 // Load Post
 
-// Step 4
+// Step 5
 function loadPosts() {
 
     fetch('https://jsonplaceholder.typicode.com/posts')
         .then(res => res.json())
-        .then(posts => displayPost(posts))
+        .then(posts => console.log(posts))
 
 }
 
-function displayPost(posts) {
-    console.log(posts);
+// Step 6
+function displayData(users) {
+    // console.log(users);
+    // Setp 8
+    const ul = document.getElementById('users');
+
+    // Step 7
+    for (const user of users) {
+        // console.log(user.name);
+
+        // Step 9
+        const li = document.createElement('li');
+        li.innerText = `Name: ${user.name} :: Email: ${user.email}`;
+        ul.appendChild(li);
+
+    }
 }
