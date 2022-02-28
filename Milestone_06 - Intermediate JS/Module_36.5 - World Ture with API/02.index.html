@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,12 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API data read errors</title>
     <style>
-        
+        #spinner {
+            display: none;
+        }
     </style>
 </head>
 
 <body>
     <input type="text" id="search-field"> <button onclick="searchMeal()">Search</button>
+    <div id="spinner">Loading...</div>
     <div id="meals">
 
     </div>
