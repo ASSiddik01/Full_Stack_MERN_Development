@@ -88,7 +88,9 @@ function addRecordHandler() {
     return;
   }
 
-  addRecord(name, !salary);
+  // addRecord(name, !salary);
+  // Problem 1 ! sign remove
+  addRecord(name, salary);
 }
 
 function addRecord(name, salary) {
