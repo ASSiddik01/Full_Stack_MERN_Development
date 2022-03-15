@@ -70,6 +70,12 @@ const createSlider = () => {
   // hide image aria
   imagesArea.style.display = 'none';
   const duration = document.getElementById('duration').value || 1000;
+  // Problem 4: Duration alart and return
+  if (duration < 0) {
+    alert('Please! give me a positive value and more than four')
+    return
+  }
+  
   sliders.forEach(slide => {
     let item = document.createElement('div')
     item.className = "slider-item";
