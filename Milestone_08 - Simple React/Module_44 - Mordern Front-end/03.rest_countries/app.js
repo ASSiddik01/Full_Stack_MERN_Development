@@ -19,12 +19,32 @@ const displayData = countries => {
 }
 
 // Step 4: Single Country
-const countryHTML = country => {
-    console.log(country);
+// const countryHTML = country => {
+//     console.log(country);
+//     // Option 1
+//     // return `
+//     //     <div class="country">
+//     //         <h2>${country.name.common}</h2>
+//     //         <img src="${country.flags.png}" >
+//     //     </div>
+//     // `
+
+//     // Option 2
+//     // const { name, flags } = country;
+//     // return `
+//     //     <div class="country">
+//     //         <h2>${name.common}</h2>
+//     //         <img src="${flags.png}" >
+//     //     </div>
+//     // `
+// }
+
+// Option 3
+const countryHTML = ({name, flags}) => {
     return `
         <div class="country">
-            <h2>${country.name.common}</h2>
-            <img src="${country.flags.png}" >
+            <h2>${name.common}</h2>
+            <img src="${flags.png}" >
         </div>
     `
 }
