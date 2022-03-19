@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Country from '../Country/Country';
 
 const Countries = () => {
     // 1
@@ -12,7 +13,12 @@ const Countries = () => {
     },[])
     return (
         <div>
+            {/* 4 */}
+            {
+                countries.map(country => <Country name={country.name.common} population={country.population} area={country.area}></Country>)
+            }
             <h1>Total Country: {countries.length} </h1>
+            
         </div>
     );
 };
