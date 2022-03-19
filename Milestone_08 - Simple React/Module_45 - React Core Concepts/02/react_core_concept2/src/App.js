@@ -1,33 +1,41 @@
-import './App.css';
-import React, { useState } from 'react';
-
+import "./App.css";
+import React, { useEffect, useState } from "react";
 
 function App() {
   return (
     <div className="App">
-     <Counter></Counter>
+      <Users></Users>
     </div>
   );
 }
 
-function Counter() {
-  const [count, setCount] = useState(55);
-  
-  const increaseCount = () => setCount(count + 1);
-  const decreaseCount = () => setCount(count - 1);
-  
-  // const increaseCount = () => {
-  //   const newCount = count + 1;
-  //   setCount(newCount);
-  // }
+function Users() {
+  // 2
+  const [users, setUsers] = useState([]);
+
+  // 3
+  useEffect(() => {
+    // 4
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((res) => res.json())
+      .then((data) => setUsers(data));
+  }, []);
+  // 1
   return (
     <div>
-      <h1>Count: {count} </h1>
-      <button onClick={increaseCount}>Increase</button>
-      <button onClick={decreaseCount}>Decrease</button>
+      {users.map((user) => <User name={user.name} email={user.email}></User> )}
+      <h1>Users</h1>
+    </div>
+  );
+}
+
+function User(props) {
+  return (
+    <div>
+      <h3>Name: {props.name} </h3>
+      <p>Email: {props.email} </p>
     </div>
   )
-
 }
 
 export default App;
