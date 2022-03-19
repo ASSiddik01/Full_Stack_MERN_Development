@@ -16,7 +16,9 @@ const Countries = () => {
             {/* 4 */}
             {
                 countries.map(country => <Country
-                    country={country}
+                    name={country.name.common}
+                    population={country.population}
+                    area={country.area}
                 ></Country>)
             }
             <h1>Total Country: {countries.length} </h1>
