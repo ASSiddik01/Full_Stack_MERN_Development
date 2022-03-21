@@ -49,7 +49,7 @@ const Cosmatics = () => {
   return (
     <div>
       {cosmatics.map((cosmatic) => (
-        <Cosmatic key={cosmatic._id} cosmatic={cosmatic}></Cosmatic>
+        <Cosmatic key={cosmatic.id} cosmatic={cosmatic}></Cosmatic>
       ))}
     </div>
   );

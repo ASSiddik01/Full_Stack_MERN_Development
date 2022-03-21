@@ -1,11 +1,23 @@
 import React from "react";
+import "./Cosmatic.css";
 
 const Cosmatic = (props) => {
-  const { name, price } = props.cosmatic;
+  const { id, name, price } = props.cosmatic;
+
+  const addToCart = (id) => {
+    console.log('aaaz',id);
+  }
+
+  const addToCartWithPram= ()=> addToCart(id)
+
   return (
-    <div>
-          <h2>Name: {name}</h2>
-          <p>Price: {price} </p>
+    <div className="product">
+      <h2>Name: {name}</h2>
+      <p>Price: {price} </p>
+      <p>Id: {id} </p>
+      <button onClick={addToCartWithPram}>Add to Cart</button>
+      {/* ShortCut */}
+      <button onClick={()=> addToCart(id)}>Shortcut to Cart</button>
     </div>
   );
 };
