@@ -1,11 +1,12 @@
 import React from "react";
+import { addToDb } from "../../uitilities/fakedb";
 import "./Cosmatic.css";
 
 const Cosmatic = (props) => {
   const { id, name, price } = props.cosmatic;
 
   const addToCart = (id) => {
-    console.log('aaaz',id);
+    addToDb(id)
   }
 
   const addToCartWithPram= ()=> addToCart(id)
