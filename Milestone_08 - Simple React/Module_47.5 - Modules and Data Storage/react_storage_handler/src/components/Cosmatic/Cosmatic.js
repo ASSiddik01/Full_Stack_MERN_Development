@@ -15,6 +15,8 @@ const Cosmatic = (props) => {
     removeFromDb(id)
   }
 
+  
+
   return (
     <div className="product">
       <h2>Name: {name}</h2>

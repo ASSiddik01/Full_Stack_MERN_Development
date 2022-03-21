@@ -24,15 +24,22 @@ const addToDb = (id) => {
 const removeFromDb = (id) => {
   const storedCart = localStorage.getItem("cart");
   if (storedCart) {
-      const cartItem = JSON.parse(storedCart);
-      if (id in cartItem) {
-          delete cartItem[id];
-          localStorage.setItem("cart", JSON.stringify(cartItem));
-      }
+    const cartItem = JSON.parse(storedCart);
+    if (id in cartItem) {
+      delete cartItem[id];
+      localStorage.setItem("cart", JSON.stringify(cartItem));
+    }
   }
 };
 
-export { addToDb, removeFromDb };
+// Calculate total
+const getTotalPrice = (products) => {
+  const reducer = (previous, current) => previous + current.price;
+  const total = products.reduce(reducer, 0);
+  return total
+};
+
+export { addToDb, removeFromDb, getTotalPrice as getTotal };
 
 // const addToDb = (id) => {
 //   const quentity = localStorage.getItem(id);
