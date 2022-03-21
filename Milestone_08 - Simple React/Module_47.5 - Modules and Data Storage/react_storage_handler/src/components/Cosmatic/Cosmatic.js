@@ -1,5 +1,5 @@
 import React from "react";
-import { addToDb } from "../../uitilities/fakedb";
+import { addToDb, removeFromDb } from "../../uitilities/fakedb";
 import "./Cosmatic.css";
 
 const Cosmatic = (props) => {
@@ -9,7 +9,11 @@ const Cosmatic = (props) => {
     addToDb(id)
   }
 
-  const addToCartWithPram= ()=> addToCart(id)
+  const addToCartWithPram = () => addToCart(id);
+
+  const removeFromCart = (id) => {
+    removeFromDb(id)
+  }
 
   return (
     <div className="product">
@@ -18,7 +22,7 @@ const Cosmatic = (props) => {
       <p>Id: {id} </p>
       <button onClick={addToCartWithPram}>Add to Cart</button>
       {/* ShortCut */}
-      <button onClick={()=> addToCart(id)}>Shortcut to Cart</button>
+      <button onClick={()=> removeFromCart(id)}>Remove</button>
     </div>
   );
 };
