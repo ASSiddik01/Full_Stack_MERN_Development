@@ -1,13 +1,10 @@
-
-import './App.css';
-import Cosmatic from './components/Cosmatic/Cosmatic';
-import Shoes from './components/Shoes/Shoes';
+import "./App.css";
+import Cosmatics from "./components/Cosmatices/Cosmatics";
 
 function App() {
   return (
     <div className="App">
-      <Cosmatic></Cosmatic>
-      <Shoes></Shoes>
+      <Cosmatics></Cosmatics>
     </div>
   );
 }
