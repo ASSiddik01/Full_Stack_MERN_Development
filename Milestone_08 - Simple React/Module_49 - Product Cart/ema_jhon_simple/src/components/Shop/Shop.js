@@ -18,11 +18,17 @@ const Shop = () => {
   // Get Local storage data
   useEffect(() => {
     const storedCart = getStoredCart();
+    const savedCart = [];
     for (const id in storedCart) {
-      const addProduct = products.find(product => product.id === id);
-      console.log(addProduct);
+      const addProduct = products.find((product) => product.id === id);
+      if (addProduct) {
+        const quantity = storedCart[id];
+        addProduct.quantity = quantity;
+        savedCart.push(addProduct);
+      }
     }
-  },[])
+    setCart(savedCart);
+  }, [products]);
 
   // Step 7
   const [cart, setCart] = useState([]);
@@ -32,7 +38,7 @@ const Shop = () => {
     // console.log(product)
     const newCart = [...cart, product];
     setCart(newCart);
-    addToDb(product.id)
+    addToDb(product.id);
   };
   return (
     <div className="shop_container">
@@ -47,7 +53,7 @@ const Shop = () => {
         ))}
       </div>
       <div className="cart_container">
-              <Cart cart={cart}></Cart>
+        <Cart cart={cart}></Cart>
       </div>
     </div>
   );
