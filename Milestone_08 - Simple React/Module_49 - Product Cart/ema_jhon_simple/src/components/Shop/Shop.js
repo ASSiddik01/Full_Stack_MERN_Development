@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Product from "../Product/Product";
 import Cart from "../Cart/Cart";
-import { addToDb } from "../../utilities/fakedb";
+import { addToDb, getStoredCart } from "../../utilities/fakedb";
 
 const Shop = () => {
   // Step 3
@@ -14,6 +14,15 @@ const Shop = () => {
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
+
+  // Get Local storage data
+  useEffect(() => {
+    const storedCart = getStoredCart();
+    for (const id in storedCart) {
+      const addProduct = products.find(product => product.id === id);
+      console.log(addProduct);
+    }
+  },[])
 
   // Step 7
   const [cart, setCart] = useState([]);
