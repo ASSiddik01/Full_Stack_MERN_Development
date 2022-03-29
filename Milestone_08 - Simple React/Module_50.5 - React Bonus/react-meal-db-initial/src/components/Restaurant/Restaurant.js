@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { addToDb } from '../../utilities/fakedb';
-import Meal from '../Meal/Meal';
-import OrderList from '../OrderList/OrderList';
-import './Restaurant.css';
+import React, { useEffect, useState } from "react";
+import { addToDb, getStoredCart } from "../../utilities/fakedb";
+import Meal from "../Meal/Meal";
+import OrderList from "../OrderList/OrderList";
+import "./Restaurant.css";
 
 const Restaurant = () => {
-    const [meals, setMeals] = useState([]);
-    const [orders, setOrders] = useState([]);
+  const [meals, setMeals] = useState([]);
+  const [orders, setOrders] = useState([]);
 
-    useEffect(() => {
-        fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=fish')
-            .then(res => res.json())
-            .then(data => setMeals(data.meals));
-    }, []);
-    /* 
+  useEffect(() => {
+    fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=fish")
+      .then((res) => res.json())
+      .then((data) => setMeals(data.meals));
+  }, []);
+  /* 
         The above api link or the below method will now work for search. 
         if you want to implement search in this code. 
         1. add a input field 
@@ -27,35 +27,56 @@ const Restaurant = () => {
         Read carefully, give it a try. [ Ki ache jibone]
         if  you need help, let us know in the support session
     */
-    
-    // Step 1 handle add to meal db
-    const addToOrders = (meal) => {
-        // Step 2
-        const neworders = [...orders, meal]
-        setOrders(neworders);
 
-        addToDb(meal.idMeal);
+  // Step 3
+  useEffect(() => {
+    const storedOrders = getStoredCart();
+    const savedOrder = [];
+
+    for (const id in storedOrders) {
+      const addedMeal = meals.find((meal) => meal.idMeal === id);
+      if (addedMeal) {
+        const quantity = storedOrders[id];
+        addedMeal.quantity = quantity;
+        savedOrder.push(addedMeal);
+      }
     }
 
-    
+    setOrders(savedOrder);
+  }, [meals]);
 
-    return (
-        <div className="restaurant-menu">
-            <div className="meals-container">
-                {
-                    meals.map(meal => <Meal
-                        key={meal.idMeal}
-                        meal={meal}
-                        addToOrders={addToOrders}
-                    ></Meal>)
-                }
-            </div>
-            <div className="order-list">
-                <OrderList orders={orders}></OrderList>
-            </div>
-        </div>
+  // Step 1 handle add to meal db
+  const addToOrders = (meal) => {
+    // Step 3
+    let newOrders = [];
+    const exist = orders.find((m) => m.idMeal === meal.idMeal);
+      if (exist) {
+          const rest = orders.filter(m => m.idMeal !== meal.idMeal);
+          exist.quantity = exist.quantity + 1;
+          newOrders = [...rest, exist];
+    } else {
+        meal.quantity = 1;
+      newOrders = [...orders, meal];
+    }
+    // Step 2
+    // const neworders = [...orders, meal];
+    setOrders(newOrders);
 
-    );
+    addToDb(meal.idMeal);
+  };
+
+  return (
+    <div className="restaurant-menu">
+      <div className="meals-container">
+        {meals.map((meal) => (
+          <Meal key={meal.idMeal} meal={meal} addToOrders={addToOrders}></Meal>
+        ))}
+      </div>
+      <div className="order-list">
+        <OrderList orders={orders}></OrderList>
+      </div>
+    </div>
+  );
 };
 
 export default Restaurant;
