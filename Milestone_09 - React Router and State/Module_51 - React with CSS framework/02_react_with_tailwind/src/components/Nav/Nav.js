@@ -13,12 +13,12 @@ const Nav = () => {
     { id: 5, name: "Contact Us", link: "/contact" },
   ];
   return (
-    <nav>
+    <nav className="bg-orange-300">
       <div onClick={() => setOpen(!open)} className="w-6 h-6 md:hidden">
         {open ? <XIcon></XIcon> : <MenuIcon></MenuIcon>}
       </div>
       <ul
-        className={`md:flex justify-center absolute duration-500 ease-in ${
+        className={`md:flex justify-center absolute duration-500 ease-in w-full md:static bg-orange-300 ${
           open ? "top-6" : "top-[-120px]"
         } `}
       >
