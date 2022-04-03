@@ -8,6 +8,8 @@ import About from './components/About/About';
 import ShowDetails from './components/ShowDetails/ShowDetails';
 import Posts from './components/Posts/Posts';
 import PostDetails from './components/PostDetails/PostDetails';
+import Countries from './components/Countries/Countries';
+import CountryDetails from './components/CountryDetails/CountryDetails';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
         <Route path="/posts" element={<Posts />}>
           <Route path=':id' element={<PostDetails></PostDetails>} ></Route>
         </Route>
+        <Route path="/countries" element={<Countries />} />
+        <Route path='/country/:name' element={<CountryDetails></CountryDetails>} ></Route>
         <Route path="/about" element={<About />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
