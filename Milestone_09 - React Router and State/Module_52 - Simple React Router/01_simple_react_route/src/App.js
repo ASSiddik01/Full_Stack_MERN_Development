@@ -13,8 +13,8 @@ function App() {
       <Header></Header>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/friends" element={<Friend />} />
-        <Route path="/friends/:id" element={<ShowDetails />} />
+        <Route path="/friend" element={<Friend />} />
+        <Route path="/friend/:id" element={<ShowDetails></ShowDetails>} />
         <Route path="/about" element={<About />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>

@@ -6,7 +6,7 @@ const Header = () => {
         <nav>
             {/* <Link to='/'>Home</Link> */}
             <CustomLink to='/'>Home</CustomLink>
-            <CustomLink to='/friends'>Friend</CustomLink>
+            <CustomLink to='/friend'>Friend</CustomLink>
             <CustomLink to='/about'>About</CustomLink>
         </nav>
     );
