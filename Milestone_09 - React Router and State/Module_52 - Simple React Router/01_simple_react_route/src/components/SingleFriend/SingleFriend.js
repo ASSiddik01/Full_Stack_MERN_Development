@@ -12,7 +12,7 @@ const SingleFriend = (props) => {
   return (
     <div>
       <h2> {name} </h2>
-      <button>
+      <button onClick={showDetails}>
         {" "}
         {username} id:{id}{" "}
       </button>
