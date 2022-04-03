@@ -5,6 +5,7 @@ import Friend from './components/Friend/Friend';
 import NotFound from './components/NotFound/NotFound';
 import Header from './components/Header/Header';
 import About from './components/About/About';
+import ShowDetails from './components/ShowDetails/ShowDetails';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/friends" element={<Friend />} />
+        <Route path="/friends/:id" element={<ShowDetails />} />
         <Route path="/about" element={<About />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
