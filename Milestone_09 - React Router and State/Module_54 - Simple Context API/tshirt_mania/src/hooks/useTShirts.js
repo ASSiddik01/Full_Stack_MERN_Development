@@ -1,15 +1,13 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react"
 
-const useTshirt = () => {
-  const [tShirts, setTShirt] = useState([]);
-  useEffect(() => {
-    fetch("tshirts.json")
-      .then((res) => res.json())
-      .then((data) => setTShirt(data));
-  }, []);
+const useTShirts = () =>{
+    const [tShirts, setTShirts] = useState([]);
+    useEffect( () =>{
+        fetch('tshirts.json')
+        .then(res => res.json())
+        .then(data => setTShirts(data));
+    }, []);
+    return [tShirts, setTShirts];
+}
 
-  return [tShirts, setTShirt];
-};
-
-export default useTshirt;
+export default useTShirts;

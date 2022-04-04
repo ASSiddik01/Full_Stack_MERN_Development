@@ -1,30 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
-import { useResolvedPath, useMatch, Link } from 'react-router-dom';
-
-function CustomLink({ children, to, ...props }) {
-    let resolved = useResolvedPath(to);
-    let match = useMatch({ path: resolved.pathname, end: true });
-  
-    return (
-      <div>
-        <Link
-          style={{ color: match ? "brown" : "black" }}
-          to={to}
-          {...props}
-        >
-          {children}
-        </Link>
-      </div>
-    );
-  }
 
 const Header = () => {
     return (
-        <nav>
-            <CustomLink to="/">Home</CustomLink>
-            <CustomLink to="/orderreview">Order Review</CustomLink>
-        </nav>
+        <div>
+            <h2>Welcome to TShirt Mania!!!</h2>
+            <nav>
+                <Link to="/home">Home</Link>
+                <Link to="/orderreview">Order Review</Link>
+                <Link to="/grandpa">GrandPa</Link>
+            </nav>
+        </div>
     );
 };
 

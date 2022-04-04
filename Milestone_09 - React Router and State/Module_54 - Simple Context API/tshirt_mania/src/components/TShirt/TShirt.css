@@ -1,9 +1,8 @@
-.t_shirt{
+.t-shirt{
     height: 400px;
-    border: 1px solid brown;
+    border: 1px solid lightgray;
     border-radius: 10px;
-    padding: 10px;
 }
-.t_shirt img{
+.t-shirt img{
     height: 250px;
 }
