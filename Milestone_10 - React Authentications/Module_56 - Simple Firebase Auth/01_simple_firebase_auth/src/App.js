@@ -9,8 +9,9 @@ import {
 } from "firebase/auth";
 import { useState } from "react";
 
+const auth = getAuth(app);
+
 function App() {
-  const auth = getAuth(app);
   const GoogleProvider = new GoogleAuthProvider();
   const GithubProvider = new GithubAuthProvider();
   const [user, setUser] = useState({});
@@ -31,10 +32,11 @@ function App() {
     signInWithPopup(auth, GithubProvider)
       .then(result => {
         const user = result.user;
+        setUser(user);
         console.log(user);
       })
       .error(error => {
-        console.log(error);
+        console.error(error);
     })
   }
 
@@ -44,7 +46,7 @@ function App() {
         setUser({});
       })
       .catch((error) => {
-        // An error happened.
+        setUser({});
       });
   };
 
