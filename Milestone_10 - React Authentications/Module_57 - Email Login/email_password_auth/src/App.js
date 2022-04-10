@@ -1,6 +1,10 @@
 import "./App.css";
 import app from "./firebase.config";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { useState } from "react";
@@ -11,12 +15,17 @@ function App() {
   const [validated, setValidated] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [registerd, setRegisterd] = useState(false);
+  const [error, setError] = useState("");
 
   const handleEmailInput = (e) => {
     setEmail(e.target.value);
   };
   const handlePasswordInput = (e) => {
     setPassword(e.target.value);
+  };
+  const handleCheckBox = (e) => {
+    setRegisterd(e.target.checked);
   };
   const handleFromSubmit = (event) => {
     event.preventDefault();
@@ -26,17 +35,37 @@ function App() {
       return;
     }
     if (!/(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}/.test(password)) {
+      setError("6 char, 1 uppercase,1 lowercase, 1 number");
       return;
     }
     setValidated(true);
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+
+    if (registerd) {
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+          setEmail("");
+          setPassword("");
+        })
+        .catch((error) => {
+          console.log(error);
+          setError(error.message);
+        });
+    } else {
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+          setEmail("");
+          setPassword("");
+        })
+        .catch((error) => {
+          console.error(error);
+          setError(error.message);
+        });
+    }
   };
 
   return (
@@ -55,7 +84,9 @@ function App() {
         onSubmit={handleFromSubmit}
         className="w-50 mx-auto"
       >
-        <h2 className="text-primary my-3">Please Register</h2>
+        <h2 className="text-primary my-3">
+          Please {registerd ? "Login" : "Register"}
+        </h2>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
@@ -83,8 +114,16 @@ function App() {
             Please provide a valid password.
           </Form.Control.Feedback>
         </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+          <Form.Check
+            onClick={handleCheckBox}
+            type="checkbox"
+            label="Already registerd"
+          />
+        </Form.Group>
+        <p className="text-danger">{error} </p>
         <Button variant="primary" type="submit">
-          Submit
+          {registerd ? "Login" : "Registration"}
         </Button>
       </Form>
     </div>
