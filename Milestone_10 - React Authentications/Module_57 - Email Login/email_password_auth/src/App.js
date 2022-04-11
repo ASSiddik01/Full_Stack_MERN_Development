@@ -6,6 +6,7 @@ import {
   sendEmailVerification,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
@@ -16,6 +17,7 @@ const auth = getAuth(app);
 function App() {
   const [validated, setValidated] = useState(false);
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [registerd, setRegisterd] = useState(false);
   const [error, setError] = useState("");
@@ -28,6 +30,9 @@ function App() {
   };
   const handleCheckBox = (e) => {
     setRegisterd(e.target.checked);
+  };
+  const handleNameInput = (e) => {
+    setName(e.target.value);
   };
   const handleFromSubmit = (event) => {
     event.preventDefault();
@@ -63,6 +68,7 @@ function App() {
           setEmail("");
           setPassword("");
           varifyEmail();
+          setUserName();
         })
         .catch((error) => {
           console.error(error);
@@ -77,15 +83,27 @@ function App() {
     });
   };
 
-  const handleForgetPassword = ()=> {
-    sendPasswordResetEmail(auth, email)
-    .then(() => {
-      console.log('Email sent');
+  const setUserName = () => {
+    updateProfile(auth.currentUser, {
+      displayName: name,
     })
-    .catch((error) => {
-      setError(error.message);
-    });
-  }
+      .then(() => {
+        console.log("update");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
+
+  const handleForgetPassword = () => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        console.log("Email sent");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
 
   return (
     <div>
@@ -106,6 +124,20 @@ function App() {
         <h2 className="text-primary my-3">
           Please {registerd ? "Login" : "Register"}
         </h2>
+        {!registerd && (
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Your name</Form.Label>
+            <Form.Control
+              onBlur={handleNameInput}
+              type="text"
+              placeholder="Enter your name"
+              required
+            />
+            <Form.Control.Feedback type="invalid">
+              Please provide a your name.
+            </Form.Control.Feedback>
+          </Form.Group>
+        )}
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
@@ -141,7 +173,9 @@ function App() {
           />
         </Form.Group>
         <p className="text-danger">{error} </p>
-        <Button onClick={handleForgetPassword} variant="link">Forget Password</Button>
+        <Button onClick={handleForgetPassword} variant="link">
+          Forget Password
+        </Button>
         <Button variant="primary" type="submit">
           {registerd ? "Login" : "Registration"}
         </Button>
