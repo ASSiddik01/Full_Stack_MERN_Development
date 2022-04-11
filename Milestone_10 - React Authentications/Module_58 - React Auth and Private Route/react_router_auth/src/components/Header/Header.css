@@ -7,3 +7,7 @@
 .header nav a:hover{
     color: brown;
 }
+
+.header{
+    margin: 10px 0;
+}
