@@ -3,6 +3,8 @@ import app from "./firebase.config";
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  sendEmailVerification,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { Button } from "react-bootstrap";
@@ -60,6 +62,7 @@ function App() {
           console.log(user);
           setEmail("");
           setPassword("");
+          varifyEmail();
         })
         .catch((error) => {
           console.error(error);
@@ -67,6 +70,22 @@ function App() {
         });
     }
   };
+
+  const varifyEmail = () => {
+    sendEmailVerification(auth.currentUser).then(() => {
+      console.log("sent");
+    });
+  };
+
+  const handleForgetPassword = ()=> {
+    sendPasswordResetEmail(auth, email)
+    .then(() => {
+      console.log('Email sent');
+    })
+    .catch((error) => {
+      setError(error.message);
+    });
+  }
 
   return (
     <div>
@@ -122,6 +141,7 @@ function App() {
           />
         </Form.Group>
         <p className="text-danger">{error} </p>
+        <Button onClick={handleForgetPassword} variant="link">Forget Password</Button>
         <Button variant="primary" type="submit">
           {registerd ? "Login" : "Registration"}
         </Button>
