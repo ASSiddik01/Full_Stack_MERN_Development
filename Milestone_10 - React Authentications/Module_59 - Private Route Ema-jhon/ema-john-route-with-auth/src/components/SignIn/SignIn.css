@@ -41,7 +41,11 @@
   margin: 20px;
   font-size: 24px;
   border-radius: 5px;
+  cursor: pointer;
 
+}
+.form_submit:hover{
+    background-color: rgba(255, 153, 0, 0.692)
 }
 
 .form_container p{
@@ -52,4 +56,21 @@
     color: #ff9900;
     text-decoration: none;
     margin-left: 5px;
+}
+
+.line{
+    display: flex;
+}
+
+hr{
+    width: 33.33%;
+}
+
+.form_container button{
+    margin: 24px;
+    padding: 20px 130px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
 }
