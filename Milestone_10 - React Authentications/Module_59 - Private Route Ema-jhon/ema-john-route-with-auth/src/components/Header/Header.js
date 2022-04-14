@@ -4,10 +4,15 @@ import logo from '../../images/Logo.svg';
 import './Header.css';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.config';
+import { signOut } from 'firebase/auth';
 
 const Header = () => {
     const [user] = useAuthState(auth);
     console.log(user);
+
+    const handleSignOut = () => {
+        signOut(auth);
+    }
     return (
         <nav className='header'>
             <img src={logo} alt="" />
@@ -18,7 +23,7 @@ const Header = () => {
                 <Link to="/about">About</Link>
                 
                 {
-                    user? <Link to="/register"> {user.email} Sign Out</Link> :<Link to="/login">Sign In</Link>
+                    user? <button onClick={handleSignOut}> <small>{user.email}</small> Sign Out</button> :<Link to="/login">Sign In</Link>
                 }
             </div>
         </nav>
