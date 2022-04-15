@@ -2,8 +2,16 @@ import React from "react";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import logo from "../../../images/logo.png";
 import { Link } from "react-router-dom";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from "../../../firebase.init";
+import { signOut } from 'firebase/auth';
 
 const Header = () => {
+  const [user] = useAuthState(auth);
+
+  const handleSignOut = () => {
+    signOut(auth);
+  }
   return (
     <>
       <Navbar
@@ -22,6 +30,7 @@ const Header = () => {
             <Nav className="ms-auto">
               <Nav.Link href="home#services">Services</Nav.Link>
               <Nav.Link href="home#experts">Experts</Nav.Link>
+              <Nav.Link href="chackout">Chackout</Nav.Link>
               <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
@@ -38,9 +47,9 @@ const Header = () => {
             </Nav>
             <Nav>
               <Nav.Link as={Link} to="/about">About</Nav.Link>
-              <Nav.Link eventKey={2}  as={Link} to="/login">
+              {user? <button onClick={handleSignOut} >Sign Out</button> :<Nav.Link eventKey={2}  as={Link} to="/login">
                 Login
-              </Nav.Link>
+              </Nav.Link>}
             </Nav>
           </Navbar.Collapse>
         </Container>
