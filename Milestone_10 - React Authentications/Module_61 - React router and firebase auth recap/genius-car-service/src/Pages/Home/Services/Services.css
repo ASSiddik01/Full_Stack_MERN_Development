@@ -17,3 +17,8 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+
+.cursor_pointer{
+    cursor: pointer;
+}
