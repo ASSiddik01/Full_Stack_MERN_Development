@@ -1,18 +1,28 @@
 import React, { useRef } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import auth from "../../../firebase.init";
 
 const Login = () => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const navigate = useNavigate();
 
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
+    signInWithEmailAndPassword(email, password);
     console.log(email, password);
   };
+
+  if (user) {
+    navigate('/')
+  }
 
   const navigateRegister = (event) => {
     navigate("/register");
@@ -51,7 +61,10 @@ const Login = () => {
           </Form>
           <p>
             New to Genius car?{" "}
-            <span onClick={navigateRegister} className="text-danger cursor_pointer">
+            <span
+              onClick={navigateRegister}
+              className="text-danger cursor_pointer"
+            >
               Create an account
             </span>{" "}
           </p>
