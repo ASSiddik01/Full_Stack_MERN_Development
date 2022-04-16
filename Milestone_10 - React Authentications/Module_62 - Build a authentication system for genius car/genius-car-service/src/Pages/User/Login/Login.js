@@ -7,6 +7,10 @@ import {
 } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import Loading from "../../Shared/Loading/Loading";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const emailRef = useRef("");
@@ -18,11 +22,16 @@ const Login = () => {
 
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
   let errorElement;
 
   if (error) {
     errorElement = <p className="text-danger">Error: {error?.message} </p>;
+  }
+
+  if (loading || sending) {
+    return <Loading></Loading>;
   }
 
   const handleSubmit = (event) => {
@@ -41,14 +50,17 @@ const Login = () => {
     navigate("/register");
   };
 
-  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
-
   const handleReasetPassword = async () => {
     const email = emailRef.current.value;
 
-    await sendPasswordResetEmail(email);
-    alert("Sent email");
+    if (email) {
+      await sendPasswordResetEmail(email);
+      toast("Sent email");
+    } else {
+      toast("Give your valid email");
+    }
   };
+
   return (
     <Container>
       <Row>
@@ -101,6 +113,7 @@ const Login = () => {
             </span>{" "}
           </p>
           <SocialLogin></SocialLogin>
+          <ToastContainer />
         </Col>
       </Row>
     </Container>

@@ -7,6 +7,7 @@ import {
 } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import Loading from "../../Shared/Loading/Loading";
 
 const Register = () => {
   const [agree, setAgree] = useState(false);
@@ -33,6 +34,10 @@ const Register = () => {
     alert("Updated profile");
     navigate("/");
   };
+
+  if (loading || updating) {
+    return <Loading></Loading>
+  }
 
   const navigateLogin = (event) => {
     navigate("/login");
