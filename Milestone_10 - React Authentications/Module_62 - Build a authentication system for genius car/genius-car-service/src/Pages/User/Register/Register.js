@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
@@ -6,6 +6,7 @@ import auth from "../../../firebase.init";
 import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Register = () => {
+  const [agree, setAgree] = useState(false);
   const nameRef = useRef("");
   const emailRef = useRef("");
   const passwordRef = useRef("");
@@ -18,8 +19,10 @@ const Register = () => {
     const name = nameRef.current.value;
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-    createUserWithEmailAndPassword(email, password);
-    console.log(name, email, password);
+    // const agree = event.target.terms.checked;
+    if (agree) {
+      createUserWithEmailAndPassword(email, password);
+    }
   };
 
   const navigateLogin = (event) => {
@@ -67,7 +70,16 @@ const Register = () => {
                 required
               />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+              <Form.Check
+                className={agree ? "text-primary" : "text-danger"}
+                onClick={() => setAgree(!agree)}
+                name="terms"
+                type="checkbox"
+                label="Accept terms and condition"
+              />
+            </Form.Group>
+            <Button disabled={!agree} variant="primary" type="submit">
               Submit
             </Button>
           </Form>
