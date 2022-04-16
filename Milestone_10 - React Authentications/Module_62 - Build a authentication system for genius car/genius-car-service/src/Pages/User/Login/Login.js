@@ -1,7 +1,10 @@
 import React, { useRef } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useSendPasswordResetEmail,
+  useSignInWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import SocialLogin from "../SocialLogin/SocialLogin";
 
@@ -15,15 +18,11 @@ const Login = () => {
 
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-  
+
   let errorElement;
 
   if (error) {
-    errorElement = (
-      <div>
-        <p className="text-danger">Error: {error?.message} </p>
-      </div>
-    );
+    errorElement = <p className="text-danger">Error: {error?.message} </p>;
   }
 
   const handleSubmit = (event) => {
@@ -40,6 +39,15 @@ const Login = () => {
 
   const navigateRegister = (event) => {
     navigate("/register");
+  };
+
+  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+
+  const handleReasetPassword = async () => {
+    const email = emailRef.current.value;
+
+    await sendPasswordResetEmail(email);
+    alert("Sent email");
   };
   return (
     <Container>
@@ -73,13 +81,23 @@ const Login = () => {
               Submit
             </Button>
           </Form>
+          {errorElement}
           <p>
             New to Genius car?{" "}
             <span
               onClick={navigateRegister}
-              className="text-danger cursor_pointer"
+              className="text-primary cursor_pointer"
             >
               Create an account
+            </span>{" "}
+          </p>
+          <p>
+            Forget Password?{" "}
+            <span
+              onClick={handleReasetPassword}
+              className="text-primary cursor_pointer"
+            >
+              Reset Password
             </span>{" "}
           </p>
           <SocialLogin></SocialLogin>
