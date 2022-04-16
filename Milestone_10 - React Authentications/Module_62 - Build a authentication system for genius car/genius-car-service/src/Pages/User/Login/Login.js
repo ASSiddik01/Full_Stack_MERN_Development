@@ -13,9 +13,18 @@ const Login = () => {
 
   let from = location.state?.from?.pathname || "/";
 
-
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+  
+  let errorElement;
+
+  if (error) {
+    errorElement = (
+      <div>
+        <p className="text-danger">Error: {error?.message} </p>
+      </div>
+    );
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -73,7 +82,7 @@ const Login = () => {
               Create an account
             </span>{" "}
           </p>
-        <SocialLogin></SocialLogin>
+          <SocialLogin></SocialLogin>
         </Col>
       </Row>
     </Container>
