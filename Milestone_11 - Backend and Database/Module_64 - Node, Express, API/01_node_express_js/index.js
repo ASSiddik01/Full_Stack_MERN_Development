@@ -3,7 +3,9 @@ var cors = require("cors");
 const app = express();
 const port = process.env.PORT || 5000;
 
+// Middle ware
 app.use(cors());
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Hello World from nodemon!");
@@ -19,15 +21,20 @@ const users = [
 ];
 
 // Step 2
-app.get("/users", (req, res) => {
+app.get("/user", (req, res) => {
   res.send(users);
 });
 
 // Step 4
-app.get("/users/:id", (req, res) => {
+app.get("/user/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const user = users.find((user) => user.id === id);
   res.send(user);
+});
+
+app.post("/user", (req, res) => {
+  console.log(req.body);
+  res.send("Post method success");
 });
 
 app.listen(port, () => {
