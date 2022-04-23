@@ -29,6 +29,13 @@ async function run() {
       const users = await cursor.toArray();
       res.send(users);
     });
+    // Update User
+    app.get("/user:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await userCollection.findOne(query);
+      res.send(result);
+    });
     // Post user
     app.post("/user", async (req, res) => {
       const newUser = req.body;
@@ -41,6 +48,8 @@ async function run() {
     app.delete("/user/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId };
+      const result = await userCollection.deleteOne(query);
+      res.send(result);
     });
   } finally {
     // await client.close();
