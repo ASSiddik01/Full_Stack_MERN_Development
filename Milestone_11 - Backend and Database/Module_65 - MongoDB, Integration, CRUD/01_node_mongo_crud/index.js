@@ -16,13 +16,20 @@ const client = new MongoClient(uri, {
   useUnifiedTopology: true,
   serverApi: ServerApiVersion.v1,
 });
-client.connect((err) => {
-  const collection = client.db("test").collection("devices");
-  console.log("DB Connected");
 
-  // perform actions on the collection object
-  client.close();
-});
+async function run() {
+  try {
+    await client.connect();
+    const userCollection = client.db("test").collection("users");
+    const user = { name: "me", email: "me@me.com" };
+    const result = await userCollection.insertOne(user);
+    console.log(`A document was inserted with the _id: ${result.insertedId}`);
+  } finally {
+    // await client.close();
+  }
+}
+
+run().catch(console.dir);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
