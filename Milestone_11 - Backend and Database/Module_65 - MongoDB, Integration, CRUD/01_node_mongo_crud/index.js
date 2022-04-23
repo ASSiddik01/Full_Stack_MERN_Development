@@ -30,10 +30,25 @@ async function run() {
       res.send(users);
     });
     // Update User
-    app.get("/user:id", async (req, res) => {
+    app.get("/user/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
       const result = await userCollection.findOne(query);
+      res.send(result);
+    });
+
+    app.put("/user/:id", async (req, res) => {
+      const id = req.params.id;
+      const updateUser = req.body;
+      const filter = { _id: ObjectId };
+      const options = { upsert: true };
+      const updateDoc = {
+        $set: {
+          name: updateUser.name,
+          email: updateUser.email,
+        },
+      };
+      const result = await userCollection.updateOne(filter, updateDoc, options);
       res.send(result);
     });
     // Post user
