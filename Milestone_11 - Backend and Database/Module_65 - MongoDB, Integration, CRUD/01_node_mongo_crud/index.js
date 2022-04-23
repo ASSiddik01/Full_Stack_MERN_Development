@@ -21,9 +21,12 @@ async function run() {
   try {
     await client.connect();
     const userCollection = client.db("test").collection("users");
-    const user = { name: "siddik", email: "siddik@me.com" };
-    const result = await userCollection.insertOne(user);
-    console.log(`A document was inserted with the _id: ${result.insertedId}`);
+
+    app.post("/user", (req, res) => {
+      const newUser = req.body;
+      console.log("new user", newUser);
+      res.send({ result: "user data received" });
+    });
   } finally {
     // await client.close();
   }
@@ -31,22 +34,8 @@ async function run() {
 
 run().catch(console.dir);
 
-// async function run() {
-//   try {
-//     await client.connect();
-//     const userCollection = client.db("test").collection("users");
-//     const user = { name: "me", email: "me@me.com" };
-//     const result = await userCollection.insertOne(user);
-//     console.log(`A document was inserted with the _id: ${result.insertedId}`);
-//   } finally {
-//     // await client.close();
-//   }
-// }
-
-// run().catch(console.dir);
-
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Hello Server!");
 });
 
 app.listen(port, () => {
