@@ -21,11 +21,19 @@ async function run() {
   try {
     await client.connect();
     const userCollection = client.db("test").collection("users");
-
-    app.post("/user", (req, res) => {
+    // Get User
+    app.get("/user", async (req, res) => {
+      const query = {};
+      const cursor = userCollection.find(query);
+      const users = await cursor.toArray();
+      res.send(users);
+    });
+    // Post user
+    app.post("/user", async (req, res) => {
       const newUser = req.body;
       console.log("new user", newUser);
-      res.send({ result: "user data received" });
+      const result = await userCollection.insertOne(newUser);
+      res.send(result);
     });
   } finally {
     // await client.close();

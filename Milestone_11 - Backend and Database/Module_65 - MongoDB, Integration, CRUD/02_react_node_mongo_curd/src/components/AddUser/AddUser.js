@@ -7,7 +7,6 @@ const AddUser = () => {
     const email = event.target.email.value;
 
     const user = { name, email };
-    console.log(user);
 
     //   send data to server
     fetch("http://localhost:5000/user", {
@@ -20,6 +19,8 @@ const AddUser = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
+        alert("User added successfully");
+        event.target.reset();
       })
       .catch((error) => {
         console.error("Error:", error);
