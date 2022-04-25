@@ -2,3 +2,14 @@ What is CRUD operations
 What is rest API
 What is express
 How to server work
+
+
+Server setup
+----------------
+1. Install npm - npm init
+2. Install packages - npm install express cors mongodb dotenv
+2. Require express cors dotenv 
+4. Declear app and port
+5. Use middle ware
+6. get API
+7. App listen port
