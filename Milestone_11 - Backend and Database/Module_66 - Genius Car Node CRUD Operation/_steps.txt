@@ -14,5 +14,11 @@ Server setup
 6. get API
 7. App listen port
 
+Setup API
+------------
+create a async function 
+run this functions
+
+
 geniusUser
 V6fC1Cb9cJ2ZR749
