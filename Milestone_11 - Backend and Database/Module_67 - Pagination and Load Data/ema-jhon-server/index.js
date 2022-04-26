@@ -3,6 +3,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 const cors = require("cors");
 const { MongoClient, ServerApiVersion } = require("mongodb");
+require("dotenv").config();
 
 // Middile ware
 app.use(cors());
@@ -17,6 +18,15 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
+    await client.connect();
+    const productCollecttion = client.db("emaJhon").collection("product");
+
+    app.get("/product", async (req, res) => {
+      const query = {};
+      const cursor = productCollecttion.find(query);
+      const products = await cursor.toArray();
+      res.send(products);
+    });
   } finally {
   }
 }
