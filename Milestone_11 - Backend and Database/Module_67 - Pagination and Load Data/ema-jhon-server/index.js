@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 5000;
 const cors = require("cors");
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 require("dotenv").config();
 
 // Middile ware
@@ -44,6 +44,16 @@ async function run() {
     app.get("/productCount", async (req, res) => {
       const count = await productCollecttion.estimatedDocumentCount();
       res.send({ count });
+    });
+
+    // Post by keys
+    app.post("/productByKeys", async (req, res) => {
+      const keys = req.body;
+      const ids = keys.map((id) => ObjectId(id));
+      const query = { _id: { $in: ids } };
+      const cursor = productCollecttion.find(query);
+      const products = await cursor.toArray();
+      res.send(products);
     });
   } finally {
   }

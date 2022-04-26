@@ -16,6 +16,9 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+.pagination {
+  margin: 40px;
+}
 
 .pagination button {
   margin-right: 10px;
