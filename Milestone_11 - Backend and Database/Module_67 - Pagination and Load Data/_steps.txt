@@ -10,3 +10,8 @@ create env file
 write require file in index file
 require cors
 use middle ware
+create project in DB
+create database access and copy user & password in env file
+Configure network access
+create async function run and call run
+create try, finally in function
