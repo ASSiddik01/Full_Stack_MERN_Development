@@ -23,17 +23,26 @@ async function run() {
 
     //   Get data
     app.get("/product", async (req, res) => {
+      console.log("Query", req.query);
+      const page = parseInt(req.query.page);
+      const size = parseInt(req.query.size);
       const query = {};
       const cursor = productCollecttion.find(query);
-      const products = await cursor.toArray();
+      let products;
+      if (page || size) {
+        products = await cursor
+          .skip(page * size)
+          .limit(size)
+          .toArray();
+      } else {
+        products = await cursor.toArray();
+      }
       res.send(products);
     });
 
     //   Get count
     app.get("/productCount", async (req, res) => {
-      const query = {};
-      const cursor = productCollecttion.find(query);
-      const count = await cursor.count();
+      const count = await productCollecttion.estimatedDocumentCount();
       res.send({ count });
     });
   } finally {
