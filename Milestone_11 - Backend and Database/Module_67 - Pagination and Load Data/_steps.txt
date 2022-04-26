@@ -1,0 +1,12 @@
+Server setup 
+^^^^^^^^^^^^^^^^
+
+Install server :- npm init -y
+Install inatial package :- npm i express cors dotenv mongodb
+create index.js
+write start script in package.json
+create gitignore
+create env file
+write require file in index file
+require cors
+use middle ware
