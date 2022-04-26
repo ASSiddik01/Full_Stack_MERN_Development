@@ -9,6 +9,18 @@ import "./Shop.css";
 const Shop = () => {
   const [products, setProducts] = useProducts();
   const [cart, setCart] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
+
+  useEffect(() => {
+    const url = "http://localhost:5000/productCount";
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        const count = data.count;
+        const pages = Math.ceil(count / 10);
+        setPageCount(pages);
+      });
+  }, []);
 
   useEffect(() => {
     const storedCart = getStoredCart();
@@ -54,12 +66,19 @@ const Shop = () => {
           ></Product>
         ))}
       </div>
+
       <div className="cart-container">
         <Cart cart={cart}>
           <Link to="/orders">
             <button>Review Order </button>
           </Link>
         </Cart>
+      </div>
+
+      <div className="pagination">
+        {[...Array(pageCount).keys()].map((number) => (
+          <button>{number + 1} </button>
+        ))}
       </div>
     </div>
   );
