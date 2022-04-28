@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import useServiceDetail from "../../../hooks/useServiceDetail";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import axios from "axios";
 import { toast } from "react-toastify";
+import useServiceDetail from "../../Shared/Hooks/useServiceDetails";
 
 const Checkout = () => {
   const { serviceId } = useParams();
@@ -26,6 +26,7 @@ const Checkout = () => {
   //     console.log(newUser);
   //     setUser(newUser);
   // }
+  console.log(user);
 
   const handlePlaceOrder = (event) => {
     event.preventDefault();
