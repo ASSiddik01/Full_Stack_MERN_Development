@@ -1,37 +1,54 @@
 import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useParams } from "react-router-dom";
+import auth from "../../../firebase.init";
 import useServiceDetails from "../../../hooks/useServiceDetails";
 
 const Checkout = () => {
   const { serviceId } = useParams();
   const [service] = useServiceDetails(serviceId);
-  const [user, setUser] = useState({
-    name: "Akbar The Great",
-    email: "akbar@momo.taj",
-    address: "Tajmohol Road Md.pur",
-    phone: "01711111111",
-  });
+  const [user] = useAuthState(auth);
 
-  const handleAddressChange = (event) => {
-    console.log(event.target.value);
-    const { address, ...rest } = user;
-    const newAddress = event.target.value;
-    const newUser = { address: newAddress, ...rest };
-    console.log(newUser);
-    setUser(newUser);
+  //   const [user, setUser] = useState({
+  //     name: "Akbar The Great",
+  //     email: "akbar@momo.taj",
+  //     address: "Tajmohol Road Md.pur",
+  //     phone: "01711111111",
+  //   });
+
+  //   const handleAddressChange = (event) => {
+  //     console.log(event.target.value);
+  //     const { address, ...rest } = user;
+  //     const newAddress = event.target.value;
+  //     const newUser = { address: newAddress, ...rest };
+  //     console.log(newUser);
+  //     setUser(newUser);
+  //   };
+
+  // Handle Order
+  const handlePlaceOrder = (event) => {
+    event.preventDefault();
+    const order = {
+      email: user.email,
+      service: service.name,
+      serviceId: serviceId,
+      address: event.target.address.value,
+      phone: event.target.phone.value,
+    };
   };
 
   return (
     <div className="w-50 mx-auto">
       <h2>Please Checkout :: {service.name} </h2>
-      <form>
+      <form onSubmit={handlePlaceOrder}>
         <input
           className="w-100 mb-2"
           type="text"
           name="name"
-          value={user.name}
+          value={user.displayName}
           placeholder="Your name"
           required
+          disabled
           id=""
         />
         <br />
@@ -42,6 +59,7 @@ const Checkout = () => {
           value={user.email}
           placeholder="Your email"
           required
+          disabled
           id=""
         />
         <br />
@@ -56,11 +74,11 @@ const Checkout = () => {
         />
         <br />
         <input
-          onChange={handleAddressChange}
+          //   onChange={handleAddressChange}
           className="w-100 mb-2"
           type="text"
           name="address"
-          value={user.address}
+          //   value={user.address}
           placeholder="Your address"
           required
           id=""
