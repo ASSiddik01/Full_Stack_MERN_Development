@@ -8,6 +8,7 @@ const inputStyle = {
 };
 
 const Login = () => {
+  const navigate = useNavigate();
   // Handle login
   const handleLogin = (event) => {
     event.preventDefault();
@@ -23,6 +24,10 @@ const Login = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        if (data.success) {
+          localStorage.setItem("accessToken", data.accessToken);
+          navigate("/orders");
+        }
         console.log(data);
       });
     // event.target.reset();

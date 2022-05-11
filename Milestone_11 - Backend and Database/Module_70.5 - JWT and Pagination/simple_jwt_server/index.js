@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const app = express();
+var jwt = require("jsonwebtoken");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
 const port = process.env.PORT || 5000;
@@ -17,8 +18,22 @@ app.get("/", (req, res) => {
 // Login api
 app.post("/login", (req, res) => {
   const user = req.body;
-  console.log(user);
-  res.send({ success: true });
+  if (user.email === "me@me.com" && user.password === "12345") {
+    const accessToken = jwt.sign(
+      { email: user.email },
+      process.env.ACCESS_TOKEN,
+      {
+        expiresIn: "1d",
+      }
+    );
+    res.send({
+      success: true,
+      accessToken: accessToken,
+    });
+  } else {
+    res.send({ success: false });
+  }
+  //   console.log(user);
 });
 
 app.listen(port, () => {
