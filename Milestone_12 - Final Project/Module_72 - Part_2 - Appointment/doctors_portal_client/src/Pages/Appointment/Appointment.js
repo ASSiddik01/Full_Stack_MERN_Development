@@ -1,9 +1,10 @@
 import React from "react";
+import AppoinmentBanner from "./AppoinmentBanner";
 
 const Appointment = () => {
   return (
     <div>
-      <h2>AAAAAAAAAAA</h2>
+      <AppoinmentBanner />
     </div>
   );
 };
