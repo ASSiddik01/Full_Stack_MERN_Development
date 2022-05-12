@@ -3,16 +3,18 @@ import appointment from "../../assets/images/appointment.png";
 import { useForm } from "react-hook-form";
 
 const Contact = () => {
-  const { register, handleSubmit, watch, reset } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const { register, handleSubmit, reset } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+    reset();
+  };
 
-  console.log(watch("example"));
   return (
     <section
       style={{ background: `url(${appointment})` }}
-      className="text-center text-white py-20 px-2"
+      className="text-center py-20 px-2 rounded-lg"
     >
-      <div className="mb-10">
+      <div className="mb-10 text-white">
         <h5 className="text-xl font-bold text-secondary">Contact Us</h5>
         <h2 className="text-3xl capitalize">Stay connected with us</h2>
       </div>
