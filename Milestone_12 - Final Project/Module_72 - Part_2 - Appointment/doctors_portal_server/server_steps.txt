@@ -24,9 +24,14 @@ create .env file
 create .gitignore file
 
 
-////////////////////////////
+///// DB steps ////////////
 crete new project in mongodb
 create db
 create user
 configure netware access- allow form anywhere
+connect app and copy code in index.js
+change URI user name & password by tamplate string
+create run function
+create databaseCollection
+create api
 
