@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+/* :root {
+  --primary: #0fcfec;
+  --secondary: #19d3ae;
+  --accent: #3a4256;
+} */
