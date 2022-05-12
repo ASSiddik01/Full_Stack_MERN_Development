@@ -9,9 +9,9 @@ const News = () => {
         <img
           alt="banner"
           src={treatment}
-          class="max-w-sm rounded-lg shadow-2xl"
+          class="lg:max-w-sm rounded-lg shadow-2xl"
         />
-        <div className="ml-10">
+        <div className="lg:ml-10">
           <h1 class="text-5xl font-bold">
             Exceptional Dental Care, on Your Terms
           </h1>
