@@ -5,7 +5,7 @@ import auth from "../../firebase.init";
 // hook form
 import { useForm } from "react-hook-form";
 import Loading from "./Loading";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   // Google sign in
@@ -16,6 +16,9 @@ const Login = () => {
   const [signInWithEmailAndPassword, emailUser, emailLoading, emailError] =
     useSignInWithEmailAndPassword(auth);
 
+  // navigate
+  const navigate = useNavigate();
+
   // hook form
   const {
     register,
@@ -23,14 +26,9 @@ const Login = () => {
     handleSubmit,
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    signInWithEmailAndPassword(data.email, data.password);
-  };
-
   // user
   if (googelUser || emailUser) {
-    console.log(googelUser, googelError);
+    console.log(googelUser, emailUser);
   }
 
   // Loading
@@ -48,6 +46,13 @@ const Login = () => {
       </p>
     );
   }
+
+  // handle submit
+  const onSubmit = (data) => {
+    console.log(data);
+    signInWithEmailAndPassword(data.email, data.password);
+    navigate("/appointment");
+  };
 
   return (
     <div className="flex h-screen justify-center items-center">

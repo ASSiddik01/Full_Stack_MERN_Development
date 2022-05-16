@@ -3,11 +3,12 @@ import {
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
+import { useUpdateProfile } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 // hook form
 import { useForm } from "react-hook-form";
 import Loading from "./Loading";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SingUp = () => {
   // Google sign in
@@ -15,8 +16,11 @@ const SingUp = () => {
     useSignInWithGoogle(auth);
 
   // Email sign up
-  const [createUserWithEmailAndPassword, user, emailLoading, emailError] =
+  const [createUserWithEmailAndPassword, emailUser, emailLoading, emailError] =
     useCreateUserWithEmailAndPassword(auth);
+
+  // Update name
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
   // hook form
   const {
@@ -25,31 +29,36 @@ const SingUp = () => {
     handleSubmit,
   } = useForm();
 
+  // navigate
+  const navigate = useNavigate();
+
   // Loading
-  if (googelLoading || emailLoading) {
+  if (googelLoading || emailLoading || updating) {
     return <Loading />;
   }
 
   // Error
   let errorMessage;
-  if (googelError || emailError) {
+  if (googelError || emailError || updateError) {
     errorMessage = (
       <p className="text-red-600">
         {" "}
-        {googelError?.message} {emailError?.message}{" "}
+        {googelError?.message} {emailError?.message} {updateError?.message}{" "}
       </p>
     );
   }
 
   // user
-  if (googelUser || user) {
-    console.log(googelUser, googelError);
+  if (emailUser || googelUser) {
+    console.log(googelUser, emailUser);
   }
 
   // handle submit
-  const onSubmit = (data) => {
-    console.log(data);
-    createUserWithEmailAndPassword(data.email, data.password);
+  const onSubmit = async (data) => {
+    await createUserWithEmailAndPassword(data.email, data.password);
+    await updateProfile({ displayName: data.name });
+    console.log("update");
+    navigate("/appointment");
   };
 
   return (
