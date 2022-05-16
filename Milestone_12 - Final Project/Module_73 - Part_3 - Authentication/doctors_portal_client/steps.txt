@@ -4,3 +4,15 @@ install framework
     tailwind- install and init, replace the content line in tailwind.config.js, require the basic css in index.css
     daisyUI - install, replace the plugin line in tailwind.config.js
 install react day picker for calender - npm install react-day-picker date-fns
+
+
+
+Firebase steps
+----------------------
+create firebase project from firebase website
+register web app and disable google analytics
+install firebase in your project - npm install firebase
+install react firebase hooks - npm install --save react-firebase-hooks 
+create firebase config file and store secret key .env.local
+set auth in firebase congfig file - const auth = getAuth(app);
+set sign-in method from authentication
