@@ -15,4 +15,5 @@ install firebase in your project - npm install firebase
 install react firebase hooks - npm install --save react-firebase-hooks 
 create firebase config file and store secret key .env.local
 set auth in firebase congfig file - const auth = getAuth(app);
+and export auth - export default auth;
 set sign-in method from authentication
