@@ -1,0 +1,6 @@
+create your react app
+install react router dom 
+install framework
+    tailwind- install and init, replace the content line in tailwind.config.js, require the basic css in index.css
+    daisyUI - install, replace the plugin line in tailwind.config.js
+install react day picker for calender - npm install react-day-picker date-fns
