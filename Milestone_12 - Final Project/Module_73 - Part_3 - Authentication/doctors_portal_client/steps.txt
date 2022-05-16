@@ -5,6 +5,7 @@ install framework
     daisyUI - install, replace the plugin line in tailwind.config.js
 install react day picker for calender - npm install react-day-picker date-fns
 install hook form - npm install react-hook-form
+normal email validation - [a-z0-9]+@[a-z]+\.[a-z]{2,3}
 
 
 

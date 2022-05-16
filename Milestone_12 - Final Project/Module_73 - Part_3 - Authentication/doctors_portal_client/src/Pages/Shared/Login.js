@@ -16,7 +16,10 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
   return (
     <div className="flex h-screen justify-center items-center">
@@ -24,30 +27,77 @@ const Login = () => {
         <div class="card-body">
           <h2 class="text-center text-2xl font-bold">Login</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
+            {/* Email */}
             <div class="form-control w-full max-w-xs">
               <label class="label">
-                <span class="label-text">What is your name?</span>
+                <span class="label-text">Email</span>
               </label>
               <input
                 {...register("email", {
-                  pattern: /[A-Za-z]{3}/,
+                  required: {
+                    value: true,
+                    message: "Email is required",
+                  },
+                  pattern: {
+                    value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
+                    message: "Provide valid email",
+                  },
                 })}
-                type="text"
-                placeholder="Type here"
+                type="email"
+                placeholder="Type your email"
                 class="input input-bordered w-full max-w-xs"
               />
               <label class="label">
-                <span class="label-text-alt">Alt label</span>
+                {errors.email?.type === "required" && (
+                  <span class="label-text-alt text-red-600">
+                    {errors.email.message}
+                  </span>
+                )}
+                {errors.email?.type === "pattern" && (
+                  <span class="label-text-alt text-red-600">
+                    {errors.email.message}
+                  </span>
+                )}
               </label>
             </div>
-
-            {/* <input {...register("firstName", { required: true })} /> */}
-            {errors.firstName?.type === "required" && "First name is required"}
-
-            <input {...register("lastName", { required: true })} />
-            {errors.lastName && "Last name is required"}
-
-            <input type="submit" />
+            {/* Password */}
+            <div class="form-control w-full max-w-xs">
+              <label class="label">
+                <span class="label-text">Password</span>
+              </label>
+              <input
+                {...register("password", {
+                  required: {
+                    value: true,
+                    message: "Password is required",
+                  },
+                  minLength: {
+                    value: 6,
+                    message: "Minumum 6 charcter",
+                  },
+                })}
+                type="password"
+                placeholder="Type your password"
+                class="input input-bordered w-full max-w-xs"
+              />
+              <label class="label">
+                {errors.password?.type === "required" && (
+                  <span class="label-text-alt text-red-600">
+                    {errors.password.message}
+                  </span>
+                )}
+                {errors.password?.type === "minLength" && (
+                  <span class="label-text-alt text-red-600">
+                    {errors.password.message}
+                  </span>
+                )}
+              </label>
+            </div>
+            <input
+              className="btn w-full max-w-xs"
+              value="Login"
+              type="submit"
+            />
           </form>
           <div class="divider">OR</div>
           <button onClick={() => signInWithGoogle()} class="btn btn-outline">
