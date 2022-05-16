@@ -1,14 +1,19 @@
 import React from "react";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 // hook form
 import { useForm } from "react-hook-form";
+import Loading from "./Loading";
 
 const Login = () => {
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
-  if (user || error) {
-    console.log(user, error);
-  }
+  // Google sign in
+  const [signInWithGoogle, googelUser, googelLoading, googelError] =
+    useSignInWithGoogle(auth);
+
+  // Email sign in
+  const [signInWithEmailAndPassword, emailUser, emailLoading, emailError] =
+    useSignInWithEmailAndPassword(auth);
 
   // hook form
   const {
@@ -19,7 +24,28 @@ const Login = () => {
 
   const onSubmit = (data) => {
     console.log(data);
+    signInWithEmailAndPassword(data.email, data.password);
   };
+
+  if (googelUser || emailUser) {
+    console.log(googelUser, googelError);
+  }
+
+  // Loading
+  if (googelLoading || emailLoading) {
+    return <Loading />;
+  }
+
+  // Error
+  let errorMessage;
+  if (googelError || emailError) {
+    errorMessage = (
+      <p className="text-red-600">
+        {" "}
+        {googelError?.message} {emailError?.message}{" "}
+      </p>
+    );
+  }
 
   return (
     <div className="flex h-screen justify-center items-center">
@@ -93,6 +119,7 @@ const Login = () => {
                 )}
               </label>
             </div>
+            <p className="mb-2">{errorMessage}</p>
             <input
               className="btn w-full max-w-xs"
               value="Login"
