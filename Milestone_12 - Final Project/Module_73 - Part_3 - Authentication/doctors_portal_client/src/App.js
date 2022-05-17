@@ -7,6 +7,7 @@ import Login from "./Pages/Shared/Login";
 import Footer from "./Pages/Shared/Footer";
 import Appointment from "./Pages/Appointment/Appointment";
 import SingUp from "./Pages/Shared/SingUp";
+import RequiredAuth from "./Pages/Shared/RequiredAuth";
 
 function App() {
   return (
@@ -16,7 +17,14 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="home" element={<Home />} />
         <Route path="about" element={<About />} />
-        <Route path="appointment" element={<Appointment />} />
+        <Route
+          path="appointment"
+          element={
+            <RequiredAuth>
+              <Appointment />
+            </RequiredAuth>
+          }
+        />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<SingUp />} />
       </Routes>
