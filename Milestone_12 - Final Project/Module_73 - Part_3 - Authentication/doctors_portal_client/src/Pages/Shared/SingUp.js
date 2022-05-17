@@ -62,14 +62,14 @@ const SingUp = () => {
 
   return (
     <div className="flex h-screen justify-center items-center">
-      <div class="card w-96 bg-base-100 shadow-xl">
-        <div class="card-body">
-          <h2 class="text-center text-2xl font-bold">Sign Up</h2>
+      <div className="card w-96 bg-base-100 shadow-xl">
+        <div className="card-body">
+          <h2 className="text-center text-2xl font-bold">Sign Up</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
             {/* Name */}
-            <div class="form-control w-full max-w-xs">
-              <label class="label">
-                <span class="label-text">Name</span>
+            <div className="form-control w-full max-w-xs">
+              <label className="label">
+                <span className="label-text">Name</span>
               </label>
               <input
                 {...register("name", {
@@ -80,20 +80,20 @@ const SingUp = () => {
                 })}
                 type="text"
                 placeholder="Type your name"
-                class="input input-bordered w-full max-w-xs"
+                className="input input-bordered w-full max-w-xs"
               />
-              <label class="label">
+              <label className="label">
                 {errors.name?.type === "required" && (
-                  <span class="label-text-alt text-red-600">
+                  <span className="label-text-alt text-red-600">
                     {errors.name.message}
                   </span>
                 )}
               </label>
             </div>
             {/* Email */}
-            <div class="form-control w-full max-w-xs">
-              <label class="label">
-                <span class="label-text">Email</span>
+            <div className="form-control w-full max-w-xs">
+              <label className="label">
+                <span className="label-text">Email</span>
               </label>
               <input
                 {...register("email", {
@@ -108,25 +108,25 @@ const SingUp = () => {
                 })}
                 type="email"
                 placeholder="Type your email"
-                class="input input-bordered w-full max-w-xs"
+                className="input input-bordered w-full max-w-xs"
               />
-              <label class="label">
+              <label className="label">
                 {errors.email?.type === "required" && (
-                  <span class="label-text-alt text-red-600">
+                  <span className="label-text-alt text-red-600">
                     {errors.email.message}
                   </span>
                 )}
                 {errors.email?.type === "pattern" && (
-                  <span class="label-text-alt text-red-600">
+                  <span className="label-text-alt text-red-600">
                     {errors.email.message}
                   </span>
                 )}
               </label>
             </div>
             {/* Password */}
-            <div class="form-control w-full max-w-xs">
-              <label class="label">
-                <span class="label-text">Password</span>
+            <div className="form-control w-full max-w-xs">
+              <label className="label">
+                <span className="label-text">Password</span>
               </label>
               <input
                 {...register("password", {
@@ -141,16 +141,16 @@ const SingUp = () => {
                 })}
                 type="password"
                 placeholder="Type your password"
-                class="input input-bordered w-full max-w-xs"
+                className="input input-bordered w-full max-w-xs"
               />
-              <label class="label">
+              <label className="label">
                 {errors.password?.type === "required" && (
-                  <span class="label-text-alt text-red-600">
+                  <span className="label-text-alt text-red-600">
                     {errors.password.message}
                   </span>
                 )}
                 {errors.password?.type === "minLength" && (
-                  <span class="label-text-alt text-red-600">
+                  <span className="label-text-alt text-red-600">
                     {errors.password.message}
                   </span>
                 )}
@@ -172,8 +172,11 @@ const SingUp = () => {
               type="submit"
             />
           </form>
-          <div class="divider">OR</div>
-          <button onClick={() => signInWithGoogle()} class="btn btn-outline">
+          <div className="divider">OR</div>
+          <button
+            onClick={() => signInWithGoogle()}
+            className="btn btn-outline"
+          >
             Continue with Google
           </button>
         </div>

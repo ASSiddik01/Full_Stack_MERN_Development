@@ -30,7 +30,7 @@ const Navbar = () => {
       </li>
       <li>
         {user ? (
-          <button class="btn btn-active btn-ghost" onClick={logout}>
+          <button className="btn btn-ghost" onClick={logout}>
             Sign Out
           </button>
         ) : (
