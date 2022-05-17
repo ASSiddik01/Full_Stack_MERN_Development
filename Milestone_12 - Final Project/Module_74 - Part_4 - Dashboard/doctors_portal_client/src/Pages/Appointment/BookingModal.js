@@ -21,11 +21,22 @@ const BookingModal = ({ date, treatment, setTreatment }) => {
       date: formattedDate,
       slot,
       patient: user.email,
-      patientname: user.displayName,
+      patientName: user.displayName,
       phone: event.target.slot.value,
     };
 
-    setTreatment(null);
+    fetch("http://localhost:5000/booking", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(booking),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setTreatment(null);
+      });
   };
   return (
     <div>
