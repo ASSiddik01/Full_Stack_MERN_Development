@@ -35,3 +35,15 @@ create run function
 create databaseCollection
 create api
 
+
+
+---------JWT steps--------
+install jwt - npm i jsonwebtoken
+require in index.js - var jwt = require('jsonwebtoken');
+create token by node - require('crypto').randomBytes(64).toString('hex')
+genetare token in index.js - const token = jwt.sign({ email: email }, process.env.ACCESS_TOKEN, {
+        expiresIn: "1h",
+      });
+
+send token to client
+from client set localstorage
