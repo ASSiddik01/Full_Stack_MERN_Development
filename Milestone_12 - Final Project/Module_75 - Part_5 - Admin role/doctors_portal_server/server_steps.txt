@@ -47,3 +47,11 @@ genetare token in index.js - const token = jwt.sign({ email: email }, process.en
 
 send token to client
 from client set localstorage
+send token to api - {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")} `,
+      },
+    }
+
+
