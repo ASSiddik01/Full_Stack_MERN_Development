@@ -29,9 +29,9 @@ const MyAppionment = () => {
             </tr>
           </thead>
           <tbody>
-            {appiontment.map((a) => (
+            {appiontment.map((a, index) => (
               <tr>
-                <th>{a.treatmentId}</th>
+                <th>{index + 1}</th>
                 <td>{a.patientName}</td>
                 <td>{a.date}</td>
                 <td>{a.slot}</td>
