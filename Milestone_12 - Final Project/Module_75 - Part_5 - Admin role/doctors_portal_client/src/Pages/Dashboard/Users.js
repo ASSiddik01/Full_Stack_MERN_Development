@@ -4,8 +4,17 @@ import Loading from "../Shared/Loading";
 import UserRow from "./UserRow";
 
 const Users = () => {
-  const { data: users, isLoading } = useQuery("users", () =>
-    fetch("http://localhost:5000/user").then((res) => res.json())
+  const {
+    data: users,
+    isLoading,
+    refetch,
+  } = useQuery("users", () =>
+    fetch("http://localhost:5000/user", {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")} `,
+      },
+    }).then((res) => res.json())
   );
 
   if (isLoading) {
@@ -19,16 +28,20 @@ const Users = () => {
           {/* <!-- head --> */}
           <thead>
             <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Treatment</th>
+              <th>SL.</th>
+              <th>User</th>
+              <th>Role</th>
+              <th>Remove</th>
             </tr>
           </thead>
           <tbody>
             {users.map((user, index) => (
-              <UserRow user={user} key={user._id} index={index} />
+              <UserRow
+                user={user}
+                key={user._id}
+                index={index}
+                refetch={refetch}
+              />
             ))}
           </tbody>
         </table>
