@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
+import { useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
 
 const MyAppionment = () => {
   // get user
   const [user] = useAuthState(auth);
   const [appiontment, setAppionment] = useState([]);
-  console.log(appiontment);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`http://localhost:5000/booking?patient=${user.email}`, {
@@ -18,10 +20,15 @@ const MyAppionment = () => {
       .then((res) => {
         // jwt
         if (res.status === 401 || res.status === 403) {
+          signOut(auth);
+          localStorage.removeItem("accessToken");
+          navigate("/");
         }
         return res.json();
       })
-      .then((data) => setAppionment(data));
+      .then((data) => {
+        setAppionment(data);
+      });
   }, [user]);
   return (
     <div>
