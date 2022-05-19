@@ -54,4 +54,19 @@ send token to api - {
       },
     }
 
+write JWT function - function verifyJWT(req, res, next) {
+  const authHeader = req.headers.authorization;
+  if (!authHeader) {
+    return res.status(401).send({ message: "Unauthorized access" });
+  }
+  const token = authHeader.split(" ")[1];
+  jwt.verify(token, "shhhhh", function (err, decoded) {
+    if (err) {
+      res.status(403).send({ message: "Forbidden access" });
+    }
+    req.decoded = decoded;
+    next();
+  });
+}
 
+handle status on client 

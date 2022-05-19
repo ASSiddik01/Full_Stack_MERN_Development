@@ -15,7 +15,12 @@ const MyAppionment = () => {
         authorization: `Bearer ${localStorage.getItem("accessToken")} `,
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        // jwt
+        if (res.status === 401 || res.status === 403) {
+        }
+        return res.json();
+      })
       .then((data) => setAppionment(data));
   }, [user]);
   return (
