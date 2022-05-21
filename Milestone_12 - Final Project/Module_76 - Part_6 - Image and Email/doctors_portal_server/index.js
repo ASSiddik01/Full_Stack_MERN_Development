@@ -7,6 +7,11 @@ const jwt = require("jsonwebtoken");
 // DB
 const { MongoClient, ServerApiVersion } = require("mongodb");
 
+// node mailer
+var nodemailer = require('nodemailer');
+var sgTransport = require('nodemailer-sendgrid-transport');
+
+
 // Use Middleware
 app.use(cors());
 app.use(express.json());
