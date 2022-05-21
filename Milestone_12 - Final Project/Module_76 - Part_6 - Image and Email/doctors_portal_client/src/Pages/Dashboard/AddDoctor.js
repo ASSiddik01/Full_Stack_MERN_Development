@@ -7,6 +7,8 @@ const AddDoctor = () => {
   const { data: services, isLoading } = useQuery("services", () =>
     fetch("http://localhost:5000/service").then((res) => res.json())
   );
+
+  const imgStorageKey = "0d249f6ebce01b322c3e885d02f76781";
   // hook form
   const {
     register,
@@ -16,7 +18,28 @@ const AddDoctor = () => {
 
   // handle submit
   const onSubmit = async (data) => {
-    console.log(data);
+    // console.log(data);
+    const image = data.image[0];
+    const formData = new FormData();
+    formData.append("image", image);
+    const url = `https://api.imgbb.com/1/upload?key=${imgStorageKey}`;
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.success) {
+          const img = result.data.url;
+          const doctor = {
+            name: data.name,
+            email: data.email,
+            speciality: data.speciality,
+            img: img,
+          };
+        }
+        console.log("imgbb", result);
+      });
   };
   return (
     <div>
@@ -84,8 +107,11 @@ const AddDoctor = () => {
           <label className="label">
             <span className="label-text">Speciality</span>
           </label>
-          <select {...register("speciality")} class="select w-full max-w-xs">
-            {services.map((service) => (
+          <select
+            {...register("speciality")}
+            class="select input-bordered w-full max-w-xs"
+          >
+            {services?.map((service) => (
               <option key={service._id} value={service.name}>
                 {service.name}
               </option>
@@ -106,12 +132,12 @@ const AddDoctor = () => {
               },
             })}
             type="file"
-            className="input input-bordered w-full max-w-xs"
+            className="input-bordered w-full max-w-xs"
           />
           <label className="label">
-            {errors.name?.type === "required" && (
+            {errors.image?.type === "required" && (
               <span className="label-text-alt text-red-600">
-                {errors.name.message}
+                {errors.image.message}
               </span>
             )}
           </label>
