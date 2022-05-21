@@ -39,6 +39,7 @@ async function run() {
     const serviceCollection = client.db("doctorsPortal").collection("services");
     const bookingCollection = client.db("doctorsPortal").collection("bookings");
     const userCollection = client.db("doctorsPortal").collection("users");
+    const doctorCollection = client.db("doctorsPortal").collection("doctors");
 
     //   get all service
     app.get("/service", async (req, res) => {
@@ -152,6 +153,13 @@ async function run() {
         service.slots = available;
       });
       res.send(services);
+    });
+
+    // Add doctor
+    app.post("/doctor", async (req, res) => {
+      const doctor = req.body;
+      const result = await doctorCollection.insertOne(doctor);
+      res.send(result);
     });
   } finally {
     //   await client.close();

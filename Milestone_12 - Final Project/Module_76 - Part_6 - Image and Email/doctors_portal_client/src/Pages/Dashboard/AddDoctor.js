@@ -2,6 +2,7 @@ import React from "react";
 // hook form
 import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
+import { toast } from "react-toastify";
 
 const AddDoctor = () => {
   const { data: services, isLoading } = useQuery("services", () =>
@@ -14,6 +15,7 @@ const AddDoctor = () => {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm();
 
   // handle submit
@@ -37,6 +39,24 @@ const AddDoctor = () => {
             speciality: data.speciality,
             img: img,
           };
+          // Send to DB
+          fetch("http://localhost:5000/doctor", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              authorization: `Bearer ${localStorage.getItem("accessToken")} `,
+            },
+            body: JSON.stringify(doctor),
+          })
+            .then((res) => res.json())
+            .then((inserted) => {
+              if (inserted.insertedId) {
+                toast("Doctor added successfully");
+                reset();
+              } else {
+                toast.error("Doctor not added");
+              }
+            });
         }
         console.log("imgbb", result);
       });
