@@ -11,6 +11,9 @@ const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 var nodemailer = require("nodemailer");
 var sgTransport = require("nodemailer-sendgrid-transport");
 
+// Payment
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+
 // Use Middleware
 app.use(cors());
 app.use(express.json());
@@ -98,6 +101,19 @@ async function run() {
         res.status(403).send({ message: "forbidden" });
       }
     };
+
+    // Payment API
+    app.post("/create-payment-intent", verifyJWT, async (req, res) => {
+      const service = req.body;
+      const price = service.price;
+      const amount = price * 100;
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: amount,
+        currency: "usd",
+        payment_method_types: ["card"],
+      });
+      res.send({ clientSecret: paymentIntent.client_secret });
+    });
 
     //   get all service
     app.get("/service", async (req, res) => {
