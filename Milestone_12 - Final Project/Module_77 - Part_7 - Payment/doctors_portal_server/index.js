@@ -42,21 +42,20 @@ const emailSenderOptions = {
 
 const emailClient = nodemailer.createTransport(sgTransport(emailSenderOptions));
 
-function sendAppointmentEmail(booking) {
+function sendPaymentConfirmationEmail(booking) {
   const { patient, patientName, treatment, date, slot } = booking;
 
   var email = {
-    // from: process.env.EMAIL_SENDER,
-    from: "assiddik001@gmail.com",
+    from: process.env.EMAIL_SENDER,
     to: patient,
-    subject: `Your Appointment for ${treatment} is on ${date} at ${slot} is Confirmed`,
-    text: `Your Appointment for ${treatment} is on ${date} at ${slot} is Confirmed`,
+    subject: `We have received your payment for ${treatment} is on ${date} at ${slot} is Confirmed`,
+    text: `Your payment for this Appointment ${treatment} is on ${date} at ${slot} is Confirmed`,
     html: `
       <div>
         <p> Hello ${patientName}, </p>
-        <h3>Your Appointment for ${treatment} is confirmed</h3>
+        <h3>Thank you for your payment . </h3>
+        <h3>We have received your payment</h3>
         <p>Looking forward to seeing you on ${date} at ${slot}.</p>
-        
         <h3>Our Address</h3>
         <p>Andor Killa Bandorban</p>
         <p>Bangladesh</p>
@@ -193,7 +192,7 @@ async function run() {
         return res.send({ success: false, booking: exists });
       }
       const result = await bookingCollection.insertOne(booking);
-      sendAppointmentEmail(booking);
+      sendPaymentConfirmationEmail(booking);
       return res.send({ success: true, result });
     });
 
