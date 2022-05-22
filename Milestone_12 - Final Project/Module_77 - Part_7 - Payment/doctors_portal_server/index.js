@@ -5,7 +5,7 @@ const cors = require("cors");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 // DB
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
 // node mailer
 var nodemailer = require("nodemailer");
@@ -178,6 +178,14 @@ async function run() {
       const result = await bookingCollection.insertOne(booking);
       sendAppointmentEmail(booking);
       return res.send({ success: true, result });
+    });
+
+    // Find booking by id for payment
+    app.get("/booking/:id", verifyJWT, async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const booking = await bookingCollection.findOne(query);
+      res.send(booking);
     });
 
     // Availabe
