@@ -22,3 +22,9 @@ create firebase config file and store secret key .env.local
 set auth in firebase congfig file - const auth = getAuth(app);
 and export auth - export default auth;
 set sign-in method from authentication
+
+
+
+-------Payment getway-------------
+install stripe
+
