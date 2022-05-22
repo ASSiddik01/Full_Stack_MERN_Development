@@ -27,4 +27,4 @@ set sign-in method from authentication
 
 -------Payment getway-------------
 install stripe
-
+install stripe in server - https://stripe.com/docs/payments/quickstart
