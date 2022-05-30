@@ -2,6 +2,7 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { Interface } from "readline";
+import Conuter from "./components/Conuter";
 
 const name: string = "Shama";
 const age: number = 5;
@@ -22,7 +23,11 @@ const profile: Person = {
 };
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <Conuter />
+    </div>
+  );
 }
 
 export default App;
