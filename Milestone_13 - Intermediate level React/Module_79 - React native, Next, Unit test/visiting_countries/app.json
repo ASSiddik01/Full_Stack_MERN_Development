@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "visiting_countries",
-    "slug": "visiting_countries",
+    "name": "visiting-countries",
+    "slug": "visiting-countries",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
